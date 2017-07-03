@@ -1,0 +1,174 @@
+.pr_lft ul li{list-style: none;}
+.pr_lft{
+    float: left;
+    border: 2px solid #afafaf;
+    width: 22%;
+    height: 100%;
+    padding-top: 28px;
+}
+.yb_design{
+    width: 100%;
+    overflow: hidden;
+    position:relative;
+}
+.toggle{
+    border: 1px solid #333;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    line-height: 12px;
+    font-size: 12px;
+    position: absolute;
+    left: 42px;
+    top: 12px;
+    cursor: pointer;
+}
+.yb_design ul{
+    float: left;
+    width: 150px;
+    padding: 10px 0px 10px 60px;
+    font-size: 18px;
+    font-family: "arial", "微软雅黑", "宋体";
+}
+.yb_design ul li{
+    font-size: 16px;
+    padding: 5px 0px 0px 26px;
+    display: none;
+}
+.yb_design ul li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+ }
+.pr_rht{
+    float: left;
+    width: calc(100% - 4px);
+    /*width: calc(78% - 4px);*/
+    height: inherit;
+}
+.pr_select{
+    overflow: hidden;
+}
+.pr_immediat,.pr_hand,.pr_timed{
+    float: left;
+    /*width: 150px;*/
+    height: 40px;
+    line-height: 40px;
+    padding-left: 24px;
+}
+.pr_morning{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 0px 0px 36px;
+}
+.pr_morning input{
+    height: 24px;
+    font-size: 14px;
+    padding: 2px 6px;
+}
+.pr_xuanze,.pr_add{
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    margin: 10px 0px 0px 36px;
+}
+.pr_table{
+    width: 100%;
+}
+.pr_table table{
+    width: calc(100% - 56px);
+    text-align: center;
+    table-layout: fixed;
+    margin: 26px 28px;
+}
+.pr_table thead th{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.pr_table tbody td{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.pr_table tbody a{
+    display: inline-block;
+    padding:2px 12px;
+    cursor: pointer;
+}
+/*=============增加发布对象===============*/
+.pr_duixiang{
+    width: inherit;
+    height: 40px;
+    line-height: 40px;
+}
+.pr_duixiang span{
+    float: left;
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 146px;
+}
+.pr_addproject{
+    width: 400px;
+    margin-left: 72px;
+}
+.pr_addproject li{
+    list-style: none;
+    width: 274px;
+    margin-top: 26px;
+}
+.pr_addproject span{
+    display: inline-block;
+    font-size: 16px;
+    padding: 5px 16px;
+}
+.pr_addproject input{
+    float: right;
+    width: 150px;
+    height: 20px;
+    padding: 2px 5px;
+}
+.pr_addproject select{
+    width: 164px;
+    height: 26px;
+    padding: 2px 5px;
+}
+.pr_baocun{
+    float: left;
+    margin-left: 20px;
+    padding: 4px 26px;
+    cursor: pointer;
+}
+.pr_createnew{
+    float: right;
+    padding: 4px 26px;
+    cursor: pointer;
+}
+/*=============服务产品发布任务监控===================*/
+.pr_monitor{
+    width: inherit;
+    height: 40px;
+    line-height: 40px;
+}
+.pr_monitor span,.pr_monitor select{
+    float: left;
+}
+.pr_monitor span{
+    padding: 0px 10px 0px 20px;
+}
+.pr_monitor select{
+    width: 120px;
+    height: 26px;
+    margin-top: 5px;
+}
+.pr_show{
+    width: 100%;
+}
+.pr_show table {
+    width: calc(100% - 40px);
+    border-color: #fff;
+    border-top: 1px solid #ccc;
+    margin:15px auto;
+}
+.pr_show td{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}

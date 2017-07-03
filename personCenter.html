@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>个人中心</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/login.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="js/config/config.js" ></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript"> 
+        var m_user = null;
+
+        $(function(){
+            $(".loginButton").hover(function(){
+                $(this).css("background-color","rgb(3,127,223)");
+            },function(){
+                $(this).css("background-color","");
+            });
+//            $(".loginButton").click(function(){
+//			    window.location.href="nativ.html";
+//			});
+
+
+            $("#btn_login").click(function(){
+                login();
+            });
+
+            $("#btn_cancel").click(function(){
+                window.location = "index.html";
+            });
+
+            $("#btn_cancel").click(function(){
+                var userAgent = navigator.userAgent;
+                if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) {
+                    window.location.replace("about:blank");
+                } else {
+                    window.opener = null;
+                    window.open("", "_self");
+                    window.close();
+                }
+            });
+
+            function login(){
+                $("#tipShow").css("display","none");
+
+                if($("#newPassword1").val().length < 6 &&  $("#newPassword2").val().length < 6){
+                    $("#tipShow").html("新密码不足6位").css("display","block");
+                    return;
+                }
+
+                if($("#newPassword1").val() != $("#newPassword2").val()){
+                    $("#tipShow").html("两次密码不一致").css("display","block");
+                    return;
+                }
+
+                var userName = $.cookie("userName");
+                var password = $("#oldPassword").val();
+                var param = '{"userName":'+userName+',"password":'+password+'}';
+                $.ajax({
+                    type: 'post',
+                    url: basicUserUrl + "/UserService/login",
+                    data: {'para': param},
+                    dataType: 'text',
+                    error: function () {
+                        alert('登录出错!');
+                    },
+                    success: function (data) {
+                        if(data != null && data != "[]" && data != ""){
+                            modify();
+                        }
+                        else{
+                            $("#tipShow").html("原密码错误").css("display","block")
+                        }
+                    }
+                });
+            }
+
+            function modify(){
+                var userName = $.cookie("userName");
+                var newpassword = $("#newPassword1").val(); 
+                var password = $("#oldPassword").val();
+                var param = '{"userName":'+userName+',"newpassword":'+newpassword+',"password":'+password+'}';
+                $.ajax({
+                    type: 'post',
+                    url: basicUserUrl + "/UserService/updatePassword",
+                    data: {'para': param},
+                    dataType: 'text',
+                    error: function () {
+                        alert('修改密码出错!');
+                    },
+                    success: function (data) {
+                        alert("修改成功");
+                        window.location = "index.html";
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body style="height: 100%;margin: 0px;overflow: hidden;font-family: Microsoft YaHei;">
+<div class="loginBackground">
+    <img src="imgs/login/bodyBackground.png" width="100%" height="100%" style="margin:0px;z-index: -1; background-color:#83c3ff;background-image: linear-gradient(to bottom, #83c3ff 0px, #007df1 100%);">
+</div>
+<div id="divBackground" class="loginBackground">
+    <img src="imgs/login/title.png" style="position: absolute;left: 50%;margin-left: -325px;top: 10%;">
+    <div id="divPanel" class="loginPanel" style="height: 273px;">
+        <div style="width: 100%;height: 40px;margin-top: 36px;">
+            <div class="loginParam" >
+                原密码：
+            </div>
+            <div>
+                <input  id="oldPassword" type="password" class="loginParamInput" value=""/>
+            </div>
+        </div>
+        <div style="width: 100%;height: 40px;margin-top: 16px;">
+            <div class="loginParam" >
+                新密码：
+            </div>
+            <div>
+                <input  id="newPassword1" type="password" class="loginParamInput" value=""/>
+            </div>
+        </div>
+        <div style="width: 100%;height: 40px;margin-top: 16px;">
+            <div class="loginParam" >
+                确认新密码：
+            </div>
+            <div>
+                <input  id="newPassword2" type="password" class="loginParamInput" value=""/>
+            </div>
+        </div>
+        <div style="height: 20px;">
+            <span id="tipShow" class="loginTip" style="margin-left: 133px;">密码错误</span>
+        </div>
+        <div style="margin-top: 10px;">
+            <div id="btn_login" class="loginButton" style="margin-left: 134px;cursor: pointer;">确  认</div>
+            <div id="btn_cancel" class="loginButton" style="margin-left: 30px;cursor: pointer;">取  消</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

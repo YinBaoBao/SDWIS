@@ -1,0 +1,1067 @@
+/***nativ_html_proudct_display***/
+*{
+	padding:0;
+	margin: 0;
+}
+@font-face { 
+font-family: fangzheng; 
+src: url('../fonts/fangzheng.ttf'); 
+} 
+/*导航页磁贴样式*/
+.box {
+	position:relative;
+	width:200px;
+	height:200px;
+	background:#5DA746;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius: 8px;
+}
+.box div
+{
+	color:#FFFFFF;
+	font-family: "fangzheng";
+	font-weight: normal;
+	font-size: 30px;
+	text-align: center;
+	line-height: 200px;
+	cursor: pointer;
+}
+.navFlagBg{
+	position: absolute;
+	width:0px;
+	height:0px;
+	bottom:0px;
+	right: 0px;
+	border-bottom: 67px solid #FFF;
+	border-left: 87px solid transparent;
+
+}
+.navFlag{
+	position: absolute;
+	width:0px;
+	height:0px;
+	bottom:-67px;
+	right: 0px;
+	border-bottom: 65px solid #009900;
+	border-left: 85px solid transparent;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+
+.navFlag:hover{
+	border-bottom: 65px solid #00FF00;
+	border-left: 85px solid transparent;
+	cursor: pointer;
+	color: #000000;
+}
+
+.navFlag >span{
+	display: block;
+	position: absolute;
+	bottom: 9px;
+	right: 2px;
+	width: 45px;
+	height: 45px;
+	font-size: 14px;
+
+}
+
+/***nativ.html弹出层***/
+#nativBack{
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 998;
+}
+
+#nativGXRPop{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: 70%;
+	border: #009900 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+.popCaption{
+	margin: 3% auto 0px;
+	width: 45%;
+	height: 25px;
+	font-size: 24px;
+	color: #000;
+	text-align: center;
+}
+.popContent{
+	display:block; 
+	width: 100%; 
+	border-radius: 5px;
+	background: #e3e3e3;
+	font-size: 14px;
+	color: #0f0f0f;
+	line-height:20px;
+	text-indent: 2em;
+	padding-top: 10px 
+}
+.humListArea{
+	margin: 5px auto 0px;
+	width: 95%;
+	height:64%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+.humanList{
+	width:100%;
+}
+.humanItem{
+	display: block;
+	width:100%;
+	height:35px;
+	border-bottom: solid 1px #CCCCCC; 
+	text-align: left; 
+}
+.listCaption{
+	width: 75%;
+	margin: 2% auto 0px;
+}
+.humTitle{
+	display: inline-block; 
+	height:25px; 
+	font-size: 14px;
+    font-weight: bold;
+	line-height: 25px; 
+	margin-left: 20px;
+}
+.humWorkTle{
+	display: inline-block;
+	width:100%;
+	height: 45px;
+	text-align: left;
+	font-size: 14px;
+	line-height: 40px;
+}
+.human{
+	display: inline-block;
+	width: 70px;
+	height: 45px;
+	line-height: 38px;
+	font-size: 14px;
+	color: #080808;
+	margin-right:16px;
+	font-weight: bold;
+}
+.humanWork{
+	display: inline-block; 
+	font-size: 14px;
+	color: #080808; 
+	padding: 5px;
+} 
+#div_foot{
+	height: 42px;
+	line-height: 44px;
+	text-align: center;
+	width: 100%;
+	background: #48A0F9;
+	color: #EFEFEF;;
+	position: absolute;
+	bottom: 0px;
+	font-size: 16px;
+}
+.linkTitle{
+	color:#FFFFFF;
+	font-family: "arial","Hiragino Sans GB","Microsoft Yahei","微软雅黑","宋体","Tahoma","Arial","Helvetica","STHeiti";
+	font-weight: bold;
+	font-size: 26px;
+} 
+.closeNavPop{
+	position: absolute;
+	top: 2%;
+	right: 1%;
+	width: 32px;
+	height: 45px;
+	cursor: pointer;
+	color: #009900;
+	padding: 2px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.closeNavPop > i{
+	display: block;
+	position: absolute;
+	top: 23%;
+	left: 15%;
+}
+.closeNavPop >span{
+	display: inline-block;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: bold;
+} 
+#linkDiv a{
+	color:#FFFFFF;
+	font-family: "arial","Hiragino Sans GB","Microsoft Yahei","微软雅黑","宋体","Tahoma","Arial","Helvetica","STHeiti";
+	font-size: 18px;
+	cursor: pointer;
+	line-height: 40px;
+}
+
+#span_tzxx{
+	width:365px;
+	display:block;
+}
+
+#span_tzxx .reportList{
+	width: 365px;
+	height: 26px;
+	float: left;
+}
+
+#span_tzxx > p{
+	width:100px;
+	font-size:16px;
+	line-height: 26px;
+	display:block;
+	float:left;
+	margin-right: 20px;
+}
+
+#span_tzxx .reportList > p{
+	width:100px;
+	font-size:16px;
+	line-height: 26px;
+	display:block;
+	float:left;
+	margin-right: 20px;
+}
+#span_tzxx .reportList >div{
+	font-size:13px;
+	display:block;
+	width:115px;
+	float: left;
+	margin-top:4px;
+}
+#span_tzxx :nth-child(18){
+	margin-bottom:26px;
+}
+
+#span_tzxx .reportList:last-child{
+	clear:both;
+}
+#span_tzxx .reportList:last-child{
+	clear:both;
+}
+
+/****预报机管理（authorip.html）****/
+.loginHeader > label{
+	font-size: 16px;
+	color: #fff;
+}
+.loginHeader > input{
+	width: 200px;
+	height:25px;
+	border: none;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	font-size: 16px;
+}
+
+/*#machineCheck:link,#machineCheck:visited{
+	display:inline-block;
+	width:50px;
+	height:10px;
+	padding: 9px;
+	border:#666666;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	cursor: pointer;
+	font-size: 14px;
+	font-family:"微软雅黑";
+	line-height: 8px;
+	color: #FFFFFF;
+	background-color:#2591F1;
+	text-align: center;
+    text-decoration: none;
+}
+#machineCheck:hover,#machineCheck:active{
+	color: #FF0033;
+	background: #3366FF;
+}***/
+
+#machineCheck:link,#machineCheck:visited{
+	color: #FFFFFF;
+	text-decoration: none;
+	width:60px;
+	height:60px;
+}
+#machineCheck:hover,#machineCheck:active{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#addMachineInfo:link,#addMachineInfo:visited{
+	color: #FFFFFF;
+	text-decoration: none;
+	width:60px;
+	height:60px;
+}
+#addMachineInfo:hover,#addMachineInfo:active{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.mListCaption{
+	width:100%;
+	margin-top:30px;
+	border-top: #DDDDDD solid 1px;
+	list-style-type: none;
+}
+.mListCaption > li{
+	width:100%;
+	height:48px;
+	border-bottom: #DDDDDD solid 1px;
+}
+
+.mListCaption > li > span{
+	display: inline-block;
+	width: 20%;
+	font-family: "微软雅黑";
+	font-size:16px;
+	line-height: 45px;
+	text-align: center;
+}
+
+#MachineList{
+	width:100%;
+}
+#MachineList #mListArea{
+	width: 100%;
+	list-style-type: none;
+}
+#MachineList #mListArea > li{
+	width:100%;
+	height:48px;
+	line-height: 45px;
+	border-bottom: #DDDDDD solid 1px;
+	padding-top:1px;
+	background: #FFFFFF;
+	color: #000;
+}
+
+#MachineList #mListArea > li:hover{
+	background: #CCCCCC;
+	cursor: pointer;
+}
+
+/**#MachineList #mListArea > li:nth-child(n){
+	background: #FFFFFF;
+	color: #000;
+}
+
+#MachineList #mListArea > li:nth-child(2n){
+	background: #FFFFFF;
+	color: #000;
+}
+
+#MachineList #mListArea > li:nth-child(n) >span{
+	border-right: #FFFFFF solid 1px;
+
+}**/
+
+#MachineList #mListArea > li > span{
+	display: inline-block;
+	width: 20%;
+	font-family: "微软雅黑";
+	font-size:16px;
+	line-height: 28px;
+	text-align: center;
+
+}
+#mListArea > li > span > a:link,#mListArea > li > span > a:visited{
+	/**display: block;
+	width:30px;
+	height:10px;
+	padding: 5px;
+	border:#666666;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	cursor: pointer;
+	font-size: 14px;
+	font-family:"微软雅黑";
+	line-height: 8px;**/
+	color: #2591F1;
+	/**background-color:#BBBBBB;**/
+	margin: 0 auto;
+	text-decoration: none;
+}
+#mListArea > li > span > a:hover,#mListArea > li > span > a:active{
+	color: #FF0033;
+	/**background-color:#888888;**/
+	text-decoration: none;
+}
+#machineBack{
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 998;
+}
+
+
+
+/**************新增表单样式*****************/
+#insertForm{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: 70%;
+	border: #2591F1 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+/**关闭按钮2**/
+#close_pane2{
+	position: absolute;
+	bottom: 2%;
+	right: 12%;
+	width:60px;
+	height:20px;
+	cursor: pointer;
+	color: #4c4c4c;
+	background: #FFFFFF;
+	padding: 10px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+#close_pane2:hover{
+	background: #CCCCCC;
+}
+#close_pane2 span{
+	display: inline-flex;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/**新增按钮**/
+#insert_submit{
+	position: absolute;
+	background: #2591F1;
+	bottom: 2%;
+	right: 2%;
+	width:65px;
+	height:20px;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#insert_submit:hover{
+	background: #00CCFF;
+}
+
+#selectInsertID{
+	width: 70%;
+	height: 120px;
+	margin-left:15%;
+
+}
+#selectInsertID .checkArea{
+	width:160px;
+	height:40px;
+	display: inline-block;
+	margin: 0px 10px;
+	text-align: left;
+}
+#selectInsertID .checkArea > input{
+	width:20px;
+	height:20px;
+	display: block;
+	float: left;
+}
+
+#selectInsertID .checkArea > label{
+	width: 100px;
+	height:22px;
+	font-size: 16px;
+	line-height: 18px;
+	display: block;
+	float: left;
+	margin-left: 2px;
+
+}
+
+/**All输入框样式**/
+#insertForm > input{
+	width: 70%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	margin-left:15%;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#insertForm > select{
+	width: 70%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	margin-left:15%;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#insertForm > span{
+	display: block;
+	width:20%;
+	height: 30px;
+	line-height: 25px;
+	margin-top:1%;
+	margin-left:15%;
+}
+
+#selectEditID{
+	width: 70%;
+	height: 120px;
+	margin-left:15%;
+
+}
+#selectEditID .checkArea{
+	width:160px;
+	height:40px;
+	display: inline-block;
+	margin: 0px 10px;
+	text-align: left;
+}
+#selectEditID .checkArea > input{
+	width:20px;
+	height:20px;
+	display: block;
+	float: left;
+}
+
+#selectEditID .checkArea > label{
+	width: 100px;
+	height:22px;
+	font-size: 16px;
+	line-height: 18px;
+	display: block;
+	float: left;
+	margin-left: 2px;
+
+}
+
+/**IP输入框样式**/
+#insert_Machine{
+
+}
+
+#insert_Mname{
+
+}
+#insert_Mauthor{
+
+}
+
+/***********编辑表单样式************/
+#machineForm{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: 70%;
+	border: #2591F1 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+/**关闭按钮**/
+#close_panel{
+	position: absolute;
+	bottom: 2%;
+	right: 12%;
+	width:60px;
+	height:20px;
+	cursor: pointer;
+	color: #4c4c4c;
+	background: #FFFFFF;
+	padding: 10px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+#close_panel:hover{
+	background: #CCCCCC;
+}
+#close_panel span{
+	display: inline-flex;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+
+	font-size: 16px;
+	font-weight: bold;
+}
+/**确认修改**/
+#edit_submit{
+	position: absolute;
+	background: #2591F1;
+	bottom: 2%;
+	right: 2%;
+	width:65px;
+	height:20px;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#edit_submit:hover{
+	background: #00CCFF;
+}
+/**All输入框样式**/
+#machineForm > input{
+	width: 70%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	margin-left:15%;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#machineForm > select{
+	width: 70%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	margin-left:15%;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#machineForm > span{
+	display: block;
+	width:20%;
+	height: 30px;
+	line-height: 25px;
+	margin-top:1%;
+	margin-left:15%;
+}
+/**IP输入框样式**/
+#machine_IP{
+
+}
+
+#machine_Mname{
+
+}
+#machine_Mauthor{
+
+}
+.caption{
+	position: absolute;
+	margin-top:2%;
+	margin-left:2%;
+	width:30%;
+	height: 40px;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: left;
+	color: #0d1112;
+}
+/*******************************预报员管理*********************************/
+
+/**************新增表单样式*****************/
+#instManageTab{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: 70%;
+	border: #2591F1 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+/**关闭按钮2**/
+#close_pane2{
+	position: absolute;
+	bottom: 2%;
+	right: 12%;
+	width:60px;
+	height:20px;
+	cursor: pointer;
+	color: #4c4c4c;
+	background: #FFFFFF;
+	padding: 10px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+#close_pane2:hover{
+	background: #CCCCCC;
+}
+#close_pane2 span{
+	display: inline-flex;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/**All输入框样式**/
+#instManageTab .article > input{
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+
+	font-size: 16px;
+	color: #0d1112;
+}
+#instManageTab .article{
+	width: 30%;
+	height: 75px;
+	display: inline-block;
+}
+#instManageTab .article > select{
+	width: 100%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#instManageTab .article > span{
+	display: block;
+	width:100%;
+	height: 30px;
+	line-height: 25px;
+
+}
+
+/**IP输入框样式**/
+
+/***插入***/
+#insertManager{
+
+}
+
+/***插入预报员电话***/
+#insertMPhone{
+
+}
+
+/***插入预报员邮箱***/
+#instMEmail{
+
+}
+
+/***归属地下拉列表***/
+#instLandSel{
+
+}
+
+/***角色下拉列表***/
+#instRoleSel{
+	width: 100%;
+	height: 60px;
+}
+
+#instRoleSel .checkArea{
+	width: 110px;
+	height: 40px;
+	display: inline-block;
+	text-align: left;
+}
+
+#instRoleSel .checkArea > input{
+	width:20px;
+	height:20px;
+	display: block;
+	float: left;
+}
+
+#instRoleSel .checkArea > label{
+	width: 85px;
+	height:22px;
+	font-size: 16px;
+	line-height: 18px;
+	display: block;
+	float: left;
+	margin-left: 2px;
+}
+
+/***********编辑表单样式************/
+#editManageForm{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: 70%;
+	border: #2591F1 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+/**关闭按钮**/
+#close_panel{
+	position: absolute;
+	bottom: 2%;
+	right: 12%;
+	width:60px;
+	height:20px;
+	cursor: pointer;
+	color: #4c4c4c;
+	background: #FFFFFF;
+	padding: 10px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+#close_panel:hover{
+	background: #CCCCCC;
+}
+#close_panel span{
+	display: inline-flex;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+
+	font-size: 16px;
+	font-weight: bold;
+}
+/**确认修改**/
+#edit_submit{
+	position: absolute;
+	background: #2591F1;
+	bottom: 2%;
+	right: 2%;
+	width:65px;
+	height:20px;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#edit_submit:hover{
+	background: #00CCFF;
+}
+
+
+#editManageForm .article{
+	width: 30%;
+	height: 75px;
+	display: inline-block;
+}
+
+/**All输入框样式**/
+#editManageForm .article > input{
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#editManageForm .article > select{
+	width: 100%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#editManageForm .article > span{
+	display: block;
+	width:100%;
+	height: 30px;
+	line-height: 25px;
+}
+
+/**IP输入框样式**/
+
+/***修改姓名***/
+#eidtManager{
+
+}
+
+/***修改预报员电话***/
+#eidtPhone{
+
+}
+
+/***修改预报员邮箱***/
+#eidtEmail{
+
+}
+
+/***修改归属地下拉列表***/
+#changeLandSel{
+
+}
+
+/***修改角色下拉列表***/
+
+#changeRoleSel{
+	width: 100%;
+	height: 60px;
+}
+
+#changeRoleSel .checkArea{
+	width: 110px;
+	height: 40px;
+	display: inline-block;
+	text-align: left;
+}
+
+#changeRoleSel .checkArea > input{
+	width:20px;
+	height:20px;
+	display: block;
+	float: left;
+}
+
+#changeRoleSel .checkArea > label{
+	width: 85px;
+	height:22px;
+	font-size: 16px;
+	line-height: 18px;
+	display: block;
+	float: left;
+	margin-left: 2px;
+}
+
+/****按此按钮跳转角色编辑页面****/
+#roleShowPage{
+	color: #ffffff;
+	text-decoration: none;
+}
+/****弹出角色****/
+#editRoleWindow{
+	display: none;
+	position: absolute;
+	top: 35%;
+	left: 20%;
+	width: 60%;
+	height: 35%;
+	border: #2591F1 solid 3px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	z-index:999;
+}
+
+/**关闭按钮**/
+#closeRoleWin{
+	position: absolute;
+	bottom: 2%;
+	right: 12%;
+	width:60px;
+	height:20px;
+	cursor: pointer;
+	color: #4c4c4c;
+	background: #FFFFFF;
+	padding: 10px 0px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+#closeRoleWin:hover{
+	background: #CCCCCC;
+}
+#closeRoleWin span{
+	display: inline-flex;
+	margin-left: 3px;
+	width:40px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#editRoleWindow .article{
+	width: 30%;
+	height: 75px;
+	display: inline-block;
+}
+
+#editRoleBtn{
+	position: absolute;
+	background: #2591F1;
+	bottom: 2%;
+	right: 2%;
+	width:65px;
+	height:20px;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#editRoleBtn:hover{
+	background: #00CCFF;
+}
+
+#changeRoleSel .article{
+	width: 30%;
+	height: 75px;
+	display: inline-block;
+}
+
+/**All输入框样式**/
+#changeRoleSel .article > input{
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+	border-radius: 5px;
+	border: #CCCCFF solid 2px;
+	font-size: 16px;
+	color: #0d1112;
+}
+
+#changeRoleSel .article > span{
+	display: block;
+	width:100%;
+	height: 30px;
+	line-height: 25px;
+}

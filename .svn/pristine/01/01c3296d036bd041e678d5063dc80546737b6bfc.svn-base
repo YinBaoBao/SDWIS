@@ -1,0 +1,1075 @@
+@charset "utf-8";
+@themecolor:#2591F1;
+@titlecolor:#3E85BB;
+@bodercolor:rgba(125,125,125,1);
+@lineheight:30px;
+@tablehearcolor:rgba(230, 230, 230, 1);
+@paneltitlefontsize:14px;
+@paneltypefontsize:13px;
+body{
+	position: absolute;
+	left:0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	font-family: "Microsoft YaHei";
+}
+ul{
+	list-style: none;
+	padding: 0px;
+	li{
+		height: 30px;
+		line-height: 30px;
+	}
+}
+span{
+	text-align: center;
+}
+.returnIndex{
+	font-size: 18px;
+	font-weight: bold;
+	color:#FFFFFF;
+	cursor: pointer;
+}
+.mainMenu{
+	font-size: 18px;
+	font-weight: bold;
+}
+.banner{
+    height: 60px;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    background-color: @themecolor;
+}
+.logo{
+    float: left;
+    height: 60px;
+    margin: 0px 0px 0px 20px;
+    line-height: 60px;
+}
+.logo img{
+    height: 100%;
+}
+.logo .title{
+    margin-left: 10px;
+    font-size: 28px;
+    vertical-align: top;
+    letter-spacing: 5px;
+}
+#login{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    font-size: 14px;
+}
+#login a{
+    margin-left: 10px;
+    cursor: pointer;
+}
+/*页面导航按钮*/
+.navigation{
+    position: absolute;
+    right: 150px;
+    bottom: 5px;
+}
+.navigation button{
+    padding: 5px 10px;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    margin: 0px 10px 0px 10px;
+    border: 0px;
+    color:#fff;
+    background: none;
+    cursor: pointer;
+    outline:none;
+}
+.navigation button:hover,.navigation button.active{
+    border-bottom:solid #f7921c 4px;
+    outline:none;
+}
+#map_div{
+    height: 100%;
+}
+#map{
+    position: absolute;
+    left:0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+.menu{
+    height: 100%;
+    border-right: 1px solid #d0d1d1;
+    background: @themecolor;
+    z-index: 5;
+    box-shadow: 3px 0px 15px 0px #a0a1a3;
+    padding: 20px;
+    color:white;
+    .space{
+    	height: 20px;
+    }
+    .space5{
+    	height: 5px!important;
+    }
+    .title{
+    	height: 30px;
+    	border-bottom: 1px solid white;
+    	padding-bottom: 10px;
+    	span{
+    		font-size: 18px;
+    	}
+    	img{
+    		width: 30px;
+    		height: 30px;
+    	}
+    }
+    .con{
+    	height: 30px;
+    	display: flex;
+	span{
+		display: block;
+		flex:1;
+		line-height: 30px;
+		cursor: pointer;
+		margin-right: 2px;
+	}
+	span.active{
+		background-color: orange;
+	}
+	p{
+		line-height: 30px;
+		display: block;
+		font-weight: bold;
+		width: 60px;
+	}
+    }
+    #alarm{
+    	bottom: 0px;
+    	height: 40px;
+    	background-color: #9DC6FF;
+    	position: fixed;
+    	left: 0px;
+    	width: 299px;
+    	display: flex;
+    	.half{
+    		line-height: 40px;
+    		text-align: center;
+    		flex:1;
+    		display:flex;
+    		div{
+    			padding: 5px;
+    		}
+    	}
+    }
+    #ljyb_model{
+    	div{
+		height: 50px;
+		padding: 5px;
+		line-height: 40px;
+    	}
+    }
+}
+.menu_normal{
+    width: 300px;
+}
+.menu_minimize{
+    left: 56px;
+    width: 0px;
+}
+#menu_bd{
+    position: relative;
+    height: 100%;
+    z-index: 10;
+    overflow: auto;
+    background: rgba(225, 225, 235,1);
+}
+#menu_bd .title1{
+    font-size: 14px;
+    color: #006699;
+    padding: 5px 0px 0px 10px;
+}
+#menu_bd .title2{
+    font-size: 12px;
+    color: #a06c94;
+    padding: 5px 0px 5px 20px;
+}
+#menu_bd .btn_line{
+    padding: 0px 0px 5px 35px;
+}
+#menu_bd .btn_line1, #menu_bd .btn_line2{
+    padding: 0px 0px 5px 70px;
+}
+#menu_bd .btn_line3{
+    padding: 0px 0px 5px 35px;
+}
+#menu_bd .btn_line4{
+    padding: 0px 0px 5px 70px;
+}
+#menu_bd .btn_line5{
+    padding: 0px 0px 5px 35px;
+}
+#menu_bd button{
+    border: solid 1px rgb(150,160,200);
+    padding: 5px 0px;
+    border-radius: 5px;
+    cursor:pointer;
+    margin: 0px 0px 0px 10px;
+    font-size: 12px;
+    background: rgba(225, 225,235,1);
+    box-shadow: 1px 1px 1px rgb(180,190,200);
+}
+.content{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top:61px;
+    right: 0px;
+    display: flex;
+}
+.map_normal{
+    left: 300px;
+}
+.map_maximize{
+    left: 0px;
+}
+.mapLayer {
+    float: right;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    height: 62px;
+    position: absolute;
+}
+.legenditem{
+	height: 30px;
+	display: flex;
+	div{
+		width: 50px;
+		line-height: 30px;
+		text-align: center;
+	}
+}
+.datetime{
+	height: 50px;
+	line-height: 40px;
+	text-align: center;
+	input{
+		background-color: transparent;
+		color: white;
+		border: none;
+		text-align: center;
+	}
+}
+.resimport div{
+	height: 50px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	font-size: 1.2em;
+	line-height: 50px;
+}
+.opration{
+	position: absolute;
+	z-index: 600;
+	width: 300px;
+	height: 163px;
+	top:50px;
+	left: 100px;
+	border: 1px solid black;
+	background-color: white;
+	.panel-body{
+		div{
+			height: 30px;
+			display: flex;
+			button{
+				width: 80px;
+				margin-right: 10px;
+			}
+			span{
+				line-height: 30px;
+				width: 80px;
+			}
+		}
+	}
+	input{
+		border: none;
+	}
+	#element{
+		margin-top: 3px;
+		height: 555px;
+		background-color: white;
+	}
+	#spread{
+		font-size: 28px;
+		font-weight: bold;
+		cursor: pointer;
+	}
+}
+#yjzdOperateDiv{
+	position: absolute;
+	z-index: 600;
+	width: 300px;
+	height: 550px;
+	top: 10px;
+	right: 10px;
+	border: 1px solid @bodercolor;
+	background-color: white;
+	overflow: auto;
+	.title{
+		background-color: @titlecolor;
+		height: 30px;
+		padding: 5px 10px;
+		line-height: 20px;
+		color: white;
+		font-size: 12px;
+	}
+	.upContentDiv{
+			width: auto;
+		a{
+			font-size: 12px;
+			margin: 2px;
+			cursor: pointer;
+			color: #ff0000;
+		}
+		a:hover{
+			text-decoration: none;
+			color: #000000;
+		}
+		#stationMsg{
+			width: 255px;
+			height: 160px;
+			overflow: auto;
+			margin: 8px auto;
+			border: 1px @bodercolor solid;
+			div{
+				margin: 4px 6px;
+				font-size: 12px;
+			}
+			p{
+				margin: 0;
+				text-indent:25px;
+			}
+		}
+		#operateBtn{
+			margin: 8px auto;
+			a{
+				border: 0.5px @titlecolor solid;
+				background: #f1a325;
+				color: #FFFFFF;
+				font-weight: 400;
+				margin: 0;
+				padding: 2px 6px;
+				text-align: center;
+				height: 20px;
+				line-height: 20px;
+				font-size: 12px;
+			}
+			a:hover{
+				color: #000000;;
+			}
+		}
+	}
+	#downContentDiv{
+		width: 255px;
+		height: 180px;
+		margin: 10px auto;
+		font-size: 12px;
+		a{
+			color: #01AAED;
+			float: right;
+			cursor: pointer;
+		}
+		a:hover {
+			text-decoration: none;
+			color: #000000;
+		}
+		.chatTips{
+			border-radius: 10px;
+			background: #ff0000;
+			width: 8px;
+			height: 8px;
+			line-height: 10px;
+			color: #FFFFFF;
+			float: right;
+			text-align: center;
+			margin-top: 8px;
+		}
+		li{
+			list-style: none;
+			margin: 0px;
+			height:24px;
+			line-height:24px;
+			font-weight: bold;
+			font-size:12px;
+			margin-left: 5px;
+			cursor: pointer;
+			span{
+				color: #666;
+				font-size: 10px;
+				margin-left: 10px;
+				font-weight: 400;
+			}
+		}
+		li:hover{
+		color: #0a67fb;
+		}
+	}
+}
+#radar_div{
+	width: 300px;
+	height: 200px;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background-color: white;
+	.panel-body{
+		div{
+			display: flex;
+			flex-wrap:wrap;
+			height: 30px;
+			span{
+				display: block;
+				line-height: 30px;
+				font-size: @paneltypefontsize;
+			}
+			a{
+				display: block;
+				flex:1;
+				color:black;
+				cursor: pointer;
+				line-height: 30px;
+			}
+		}
+	}
+	button{
+		background-color:transparent;
+		border: none;
+		color: black;
+		font-size: 12px;
+	}
+}
+#sjzd{
+	.row{
+		display: flex;
+		height: 30px;
+		div{
+			flex:1;
+		}
+	}
+	font-size: 16px;
+}
+#manageWindow{
+	background: #F7F6F6;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 9999;
+	overflow: auto;
+	.windowContent{
+		width: 90%;
+		height: 100%;
+		margin: 0 auto;
+		background: #FFFFFF;
+		padding-top: 40px;
+		#forecastNoticeDiv{
+			width: 90%;
+			height: 277px;
+			margin: 0px auto;
+			border: 1px #F7F6F6 solid;
+			table td {
+				border: 1px #F7F6F6 solid;
+				text-align: center;
+			}
+		}
+		.elecontent{
+			font-size: 1.1em;
+			flex:2;
+			div{
+				height: 30px;
+				display: flex;
+			}
+		}
+		#contactStateDiv{
+			width: 90%;
+			height: 285px;
+			margin: 0px auto;
+			border: 1px #F7F6F6 solid;
+			margin-top: 20px;
+			table td {
+				border: 1px #F7F6F6 solid;
+				flex-wrap:wrap;
+				text-align: center;
+				span{
+					display: block;
+					flex:1;
+					text-align: center;
+				}
+			}
+		}
+		#chattingRecordsDiv{
+			width: 90%;
+			height: 210px;
+			margin: 0px auto;
+			border: 1px #F7F6F6 solid;
+			margin-top: 20px;
+			padding: 10px 30px;
+		}
+		.tableBanner{
+			background: #F6F5FA;
+			height: 30px;
+			line-height: 30px;
+			th{
+				padding: 0px 20px;
+				text-align: center;
+				font-weight: 500;
+				color: #888888;
+			}
+		}
+		#turnbackToMap{
+			border: 2px #01AAED solid;
+			background: #EEEEEE;
+			color: #666;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		#turnbackToMap:hover{
+			text-decoration: none;
+			cursor: pointer;
+			background: @themecolor;
+			color:  #FFFFFF;
+		}
+		#export_btn{
+			border: 2px #01AAED solid;
+			background: #EEEEEE;
+			color: #666;
+			position: absolute;
+			right: 10px;
+			top: 50px;
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		#export_btn:hover{
+			text-decoration: none;
+			cursor: pointer;
+			background: @themecolor;
+			color:  #FFFFFF;
+		}
+	}
+	#msgcontent{
+		width: 100%;
+		height: 100px;
+		background-color: white;
+		color: black;
+	}
+}
+#MonitorSignalPanel{
+	position: absolute;
+	right:50px;
+	top: 80px;
+	width: 300px;
+	z-index: 600;
+	li{
+		color: #692BE0;
+		span{
+			color: gray;
+		}
+	}
+}
+.panel-heading{//覆盖bootstrap
+	background-color: @titlecolor!important;
+}
+.panel-body{
+	padding:5px;
+}
+.titleclose{
+	font-size: 28px;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+}
+.row{//覆盖bootstrap
+	margin-right: 0px!important;
+	margin-left: 0px!important;
+}
+.square_btn{//覆盖bootstrap
+	padding-left:6px!important;
+	padding-right: 6px!important;
+}
+#productview{
+	width: 600px;
+	height: 540px;
+	border: 1px solid black;
+	background-color: white;
+	position: relative;
+	z-index: 600;
+	left: 600px;
+	text-align: center;
+	font-size: 1.2em;
+	.title{
+		height: 40px;
+		font-weight: bold;
+		color: @themecolor;
+		line-height: 35px;
+		font-size: 1.5em;
+		background-color: rgba(245,247,251,1);
+	}
+}
+#ldinfo{
+	position: absolute;
+	bottom: 10px;
+	left: 310px;
+	height: 130px;
+	right: 10px;
+	background-color: #f3ecec;
+	.close{
+		position: absolute;
+		right: 0px;
+		top:0px;
+		background-color: red;
+	}
+}
+#wxinfo{
+	background-color: @tablehearcolor;
+	width: 320px;
+	height: 200px;
+	position: absolute;
+	right: 10px;
+	bottom: 30px;
+	.title{
+		color: black;
+		font-size: @paneltitlefontsize;
+		font-weight: bold;
+		height: 40px;
+		line-height: 40px;
+		background-color: @titlecolor;
+		padding-left: 5px;
+		padding-right: 5px;
+		span{
+			line-height: 40px;
+		}
+	}
+	.con{
+		div{
+			height: 40px;
+			display: flex;
+			span{
+				flex:1;
+				border: 1px solid rgba(218, 218, 218, 1);
+				line-height: 40px;
+			}
+			.wxparam{
+				background-color: white;
+			}
+		}
+	}
+}
+.paneltitle{
+	background-color: @titlecolor;
+	height: 40px;
+	padding: 5px;
+	line-height: 30px;
+	color: white;
+	font-size: 1.2em;
+}
+.dragPanel{
+    position:absolute;
+    width:240px;
+    border:1px solid #547a7a;
+    background:#fff;
+    z-index: 20;
+}
+.dragPanel .title{
+    height:35px;
+    background:#3e85bc;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    line-height:35px;
+    cursor: move;
+    padding: 0px 5px 0px 5px;
+}
+.dragPanel .closeBtn{
+    float:right;
+    cursor:pointer;
+    color:#fff;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.dragPanel .closeBtn2{
+    float:right;
+    cursor:pointer;
+    margin : 0 0 0 5px;
+    /*border:1px solid #547a7a;*/
+}
+.dragPanel .ZoomIn{
+    float:right;
+    cursor:pointer;
+    margin : 0 0 0 5px;
+    /*border:1px solid #547a7a;*/
+}
+
+.dragPanel .body{
+    min-height:30px;
+    padding:5px;
+}
+.dragPanel .row1{
+    padding: 5px;
+    font-size: 14px;
+}
+#creatingProductWindow{
+	position: absolute;
+	border: 1px #c6c6c6 solid;
+	height: 520px;
+	background: #F7F6F6;
+	width: 680px;
+	overflow: auto;
+	.contentPW{
+		height: 650px;
+		.cp_head{
+		}
+		.cp_body{
+			p{
+				margin: 0;
+				text-indent:25px;
+			}
+		}
+		.cp_foot{
+			border-top: 1px #bbbbbb solid;
+			width: 95%;
+			margin: 20px auto 0;
+			a{
+				text-decoration: none;
+			}
+			a:hover{
+				color: #CCCCCC;
+				cursor: pointer;
+			}
+			button{
+				width: 80px;
+				height: 30px;
+				line-height: 24px;
+				background: #f1a325;
+				border: 1px #1a6f46 solid;
+				margin-top: 13px;
+				color: #EFEFEF;
+				text-align: center;
+			}
+			button:hover {
+				color: #CCCCCC;
+			}
+			ul{
+				float: left;
+				li{
+					float: left;
+					list-style: none;
+					margin-left: 25px;
+					height: 30px;
+					line-height: 30px;
+				}
+			}
+			input{
+				vertical-align:top;
+				width: 16px;
+				height: 16px;
+				margin-left: 8px;
+				margin-top: 7px;
+				cursor: pointer;
+			}
+			span{
+				height: 18px;
+				line-height: 30px;
+			}
+		}
+	}
+}
+.switch{
+	.parent{
+		width: 52px;
+	        	height: 26px;
+	        	border-radius: 13px;
+	       	position: relative;
+	}
+	.child{
+		width: 24px;
+	        	height: 24px;
+	        	border-radius: 12px;
+	        	position: absolute;
+	        	background: white;
+	        	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+	}
+	.open1{
+        		background: rgba(0,184,0,0.8);
+    	}
+    	.open2{
+       		top: 2px;
+       		right: 1px;
+   	}
+   	.close1{
+	        background: rgba(255,255,255,0.4);
+	        border:3px solid rgba(0,0,0,0.15);
+	        border-left: transparent;
+    	}
+   	.close2{
+	        left: 0px;
+	        top: 0px;
+	        border:2px solid rgba(0,0,0,0.1);
+   	}
+}
+.messageDiv{
+	position: absolute;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(217,237,247);
+	overflow: auto;
+	.contentMsg{
+		width: 1000px;
+		height: 520px;
+		position: relative;
+		.messageTitle{
+			height: 42px;
+			border-bottom: 1px solid rgb(187,200,209);
+			background-color: rgb(27, 84, 109);
+			color: rgb(102,255,255);
+			#chatTitle{
+				text-align: center;
+			}
+			div{
+				width: 60%;
+				height: 32px;
+				line-height: 27px;
+				margin:0 auto;
+				font-size: 18px;
+				font-family: "宋体";
+				padding-top: 8px;
+				text-align: center;
+			}
+			span{
+				margin-left: 15px;
+				color: rgb(240,240,240);
+			}
+			label{
+				float:right;
+				margin:-25px 16px 0px 0px;
+				font-size:20px;
+				color:rgb(102,255,255);
+				cursor: pointer;
+			}
+			label:hover{
+				color:white;
+			}
+		}
+		#noticeDiv{
+			position: relative;
+			height: 180px;
+			border: 1px solid rgb(187,200,209);
+			overflow: auto;
+			margin-top: 4px;
+			width: 350px;
+			background: #FFFFFF;
+			padding: 10px;
+			p{
+				margin: 0px;
+				text-indent: 25px;
+			}
+		}
+		#addStation{
+			position: relative;
+			height: 28px;
+			border: 1px solid rgb(187,200,209);
+			margin-top: 5px;
+			overflow: auto;
+			width: 350px;
+			background: #FFFFFF;
+			border-radius: 3px;
+			i{
+				position: relative;
+				width: 38px;
+				height: 26px;
+				color: #FFFFFF;
+				text-align: center;
+				background: rgb(61,121,152);
+				padding-top: 5px;
+				margin: 0;
+				top:0;
+			}
+			input{
+				width: 234px;
+				height: 25px;
+				line-height: 23px;
+				border: none;
+				margin-left: 1px;
+			}
+			button{
+				float: right;
+				background-color: rgb(61,121,152);
+				color: #ffffff;
+				width: 69px;
+				height: 26px;
+				border-radius: 3px;
+				border: none;
+				font-family: "宋体";
+				font-size: 14px;
+			}
+		}
+		#stationList{
+			position: relative;
+			height: 280px;
+			border: 1px solid rgb(187,200,209);
+			margin-top: 5px;
+			overflow: auto;
+			width: 350px;
+			background: #FFFFFF;
+			li{
+				padding-left: 10px;
+				padding-right: 10px;
+				span{
+					position: absolute;
+					background: #00ff00;
+					right: 10px;
+					border-radius: 10px;
+					height: 20px;
+					line-height: 20px;
+					width: 40px;
+					margin-top: 5px;
+					color: #FFFFFF;
+					font-size: 10px;
+				}
+			}
+			li:hover,li:active{
+				background: #0a67fb;
+				color: #FFFFFF;
+			}
+		}
+		.divMessage{
+			position:absolute;
+			border: 1px solid rgb(187,200,209);
+			overflow: auto;
+			height: 350px;
+			width: 640px;
+			margin-top: 4px;
+			top: 42px;
+			left: 36%;
+			background: #FFFFFF;
+			.messageUL{
+				position: relative;
+				width: 100px;
+				height: 402px;
+				float: right;
+				border-left: 1px solid rgb(187,200,209);
+				font-size: 14px;
+				span{
+					display: block;
+					height: 23px;
+					line-height: 23px;
+					margin-left: 5px;
+					cursor: pointer;
+				}
+				span:hover{
+					background-color: rgb(245,245,245);
+				}
+			}
+		}
+		button:hover{
+			background-color: rgb(127,176,202);
+		}
+		#inputTextDiv{
+			overflow: auto;
+			width: 640px;
+			position: absolute;
+			top:398px;
+			left: 36%;
+			#chatSend{
+				background-color: rgb(61,121,152);
+				position: relative;
+				color: #FFFFFF;
+				width: 70px;
+				height: 24px;
+				border-radius: 3px;
+				border: none;
+				font-family: "宋体";
+				font-size: 14px;
+			}
+			.messageText{
+				border: 1px solid rgb(187,200,209);
+				background: #FFFFFF;
+				height: 120px;
+				width: 100%;
+				margin-top: 2px;
+				font-size: 16px;
+				box-shadow: none;
+				resize : none;
+			}
+		}
+		.messageText:focus{
+			box-shadow: none;
+		}
+	}
+}
+.messageDetail{
+	background-color: rgb(201,206,212);
+	float: left;
+	margin: 0px 0px 10px 20px;
+	line-height: 25px;
+	padding: 0px 15px;
+	border-radius: 5px;
+	font-size: 16px;
+	max-width: 90%;
+}
+
+.messageDetailMe{
+	background-color: rgb(0,155,219);
+	float: right;
+	margin: 0px 20px 10px 0px;
+	height: 25px;
+	line-height: 25px;
+	padding: 0px 15px;
+	color: white;
+	border-radius: 5px;
+	font-size: 16px;
+}
+.elementtable{
+	width: 100%;
+	th{
+		text-align: center;
+	}
+	td{
+		text-align: center;
+		width: 60px;
+	}
+}
+.status{
+	height: 30px;
+	text-align: center;
+	padding: 5px;
+	button{
+		border:none;
+		height: 20px;
+		width: 20px;
+	}
+}
+.open{
+	background-color: yellow;
+}
+.modify{
+	background-color: rgba(51,133,255,1);
+}
+.submit{
+	background-color: blue;
+}
+.nodata{
+	background-color: gray;
+}
+.hasdata{
+	background-color: green;
+}

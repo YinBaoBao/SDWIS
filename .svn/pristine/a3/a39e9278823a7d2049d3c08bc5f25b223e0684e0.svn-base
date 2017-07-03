@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/font-awesome-ie7.min.css" type="text/css" media="screen"/>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/common.css"/>
+	<link rel="stylesheet" href="css/spd_ly.css" />
+	<title>山东气象业务一体化平台</title>
+	<script type="text/javascript">
+		function nativPage(){}
+		$(document).ready(function(){
+			 
+		});
+
+		nativPage.prototype.navClick=function(element){
+			var $item=$(element).prev();
+			$(".popCaption").html($item.text());
+			
+
+			$("#nativBack").show();
+			$("#nativGXRPop").show();
+		}; 
+	</script>
+
+</head>
+<body style="height: 100%;margin: 0px;overflow: hidden;font-family: Microsoft YaHei;">
+<div class="banner">
+	<div class="background">
+	</div>
+	<div class="logo">
+		<span class='mainMenu'>&nbsp;&nbsp;项目团队</span>
+		<img src="imgs/img_banner_titlie.png" style="position: absolute;left: 50%;margin-left: -200px;top: 10%;">
+	</div>  
+	<!--登录按钮-->
+	<div id="login" style="position:absolute;top:0px;z-index:9999">
+		<a href="nativ.html">返回首页</a>
+	</div> 
+</div> 
+<div class="loginBackground">
+	<div style="position: absolute;width: 1150px;left:80px;margin-top: 0px;height:calc(100% - 60px);overflow-y: auto;">
+		<table style='border-spacing:1px;border-collapse:separate;text-align:left;'> 
+			 <tr><td>
+			 <div class="popContent"><span class="popCaption">天气实况:  </span>天气实况子系统主要是通过对接CIMISS站点观测资料，实现站点数据以填值、等值线、等值面等方式展示，方便大家查询统计实况数据和制作一些实况产品图。
+			 <div class="humTitle">贡献者</div><div class="humTitle">指导内容</div>  
+			  <ul class="humanList">
+					<li class="humanItem">
+						<div class="human">李刚</div><div class="humanWork">天气实况子系统主要建议内容提出者，对系统布局、排版、操作方式提供了大量建议。对地图数据、配图及操作方式提出了很好的建议。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">黄本峰</div><div class="humanWork">前期一起梳理了实况气象要素及排版方式。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">王健林</div><div class="humanWork">后期对站点数据展示及却失情况进行了大量对比。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">张鹏</div><div class="humanWork">对地图却少乡镇边界问题进行了修改改善。</div>
+					</li> 
+				</ul></div>
+			 </td></tr>
+			 <tr><td>
+			 <div class="popContent"><span class="popCaption">短临预报:  </span>短临预报子系统通过对站点资料、雷达资料、云图资料的实时监测，对超过报警阈值的地方提醒报警，实现省、市、县三级报警提醒。有灾害性天气发生时，快速制作发布预警信号及灾害性天气提醒。<BR>
+			 <div class="humTitle">贡献者</div><div class="humTitle">指导内容</div>  
+			  <ul class="humanList">
+					<li class="humanItem">
+						<div class="human">郭俊建</div><div class="humanWork">短临预报子系统主要负责人，提供短临预报子系统实现思路和算法。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">赵勇</div><div class="humanWork">短临预报子系统实况报警检验测试。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">张民凯</div><div class="humanWork">短临预报子系统实况报警检验测试。</div>
+					</li> 
+				</ul></div>
+			 </td></tr>
+			 <tr><td>
+			 <div class="popContent"><span class="popCaption">山洪预警:  </span>山洪预警子系统通过对中小河流、山洪沟、泥石流、滑坡及相应的预警点信息进行综合展示及管理。通过实况和预警雨量定时输入相应的风险产品;同时，实现风险区划图谱的展示;当雨量达到有重大风险发生前，及时手动制作风险产品及发布,并可以对产品进行检验评估。<BR>
+			 <div class="humTitle">贡献者</div><div class="humTitle">指导内容</div>  
+			  <ul class="humanList">
+					<li class="humanItem">
+						<div class="human">郭俊建</div><div class="humanWork">山洪预警子系统主要负责人，提供山洪预警子系统实现思路和指导方法。</div>
+					</li>
+					<li class="humanItem">
+						<div class="human">孟宪贵</div><div class="humanWork">山洪预警产品检验评估指导负责人。</div>
+					</li>
+				</ul></div>
+			 </td></tr>
+			  <tr><td>
+			 <div class="popContent"><span class="popCaption">格点预报:  </span>格点预报子系统通过调取数值模式预报做为初始场，经过省市两级订正后形成最终的格点预报。通过订正后的格点预报可以快速生成城镇报、大城市报、主观预报产品等。<BR>
+			 <div class="humTitle">贡献者</div><div class="humTitle">指导内容</div>  
+			  <ul class="humanList">
+					<li class="humanItem">
+						<div class="human">王文青</div><div class="humanWork">格点预报子系统主要负责人，主要负责指导格点预报转主观预报规则及产品梳理。</div>
+					</li> 
+				</ul></div>
+			 </td></tr>
+		</table>
+	</div>  
+</div> 
+</body>
+</html>

@@ -1,0 +1,111 @@
+div.loginPanel{
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+    font-family: Microsoft YaHei;
+}
+
+div.loginDiv{
+    position: absolute;
+    width: 392px;
+    height: 290px;
+    top: 50%;
+    left: 50%;
+    margin-top: -180px;
+    margin-left: -200px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    font-size: 12px;
+    color: #444;
+}
+
+.loginParam{
+    float: left;
+    width: 80px;
+    height: 100%;
+    line-height: 32px;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.loginParamInput{
+    width: 330px;
+    height: 36px;
+    margin: 1px 0px 0px 30px;
+    border: 1px solid rgb(221,221,221);
+    font-size: 14px;
+    text-indent: 10px;
+}
+.loginTip{
+    color: red;
+    font-size: 12px;
+}
+
+.loginButton{
+    margin: 0px 0px 0px 30px;
+    width: 334px;
+    height: 38px;
+    line-height: 38px;
+    background-color: #379CE2;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 2px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+.loginButton:hover{
+    background-color: rgb(0,116,204);
+    cursor: pointer;
+}
+
+.loginHeader{
+    height: 50px;
+	line-height: 45px;
+    font-size: 18px;
+    background-color: #379CE2;
+}
+
+.loginHeader span{
+    margin-left: 30px;
+    line-height: 38px;
+    color: #FFFFFF;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #666;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #666;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #666;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #666;
+}
+
+div.windowInfoClose{
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #cccccc;
+    font-family: Arial;
+    padding-top:5px;
+}
+
+div.windowInfoClose:hover{
+    color: #808080;
+}
+.box div:hover{
+	background: rgba(52,132,68,0.8);
+	border-radius: 8px;
+	border: 1px solid #666;
+}

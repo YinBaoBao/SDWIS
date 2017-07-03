@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> 服务产品模板管理</TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/product.css" type="text/css">
+	<link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="../js/config/config.js"></script>
+    <script type="text/javascript" src="../js/DataClass/DataServer.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.exedit.js"></script>
+    <script type="text/javascript" src="js/HashMap.js"></script>
+    <script type="text/javascript" src="js/ProductTempMO.js"></script>
+    <script type="text/javascript" src="js/productTemp.js"></script>
+    <SCRIPT type="text/javascript">
+    </SCRIPT>
+    <style type="text/css">
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+</HEAD> 
+<BODY style="background:#FFFFFF;"> 
+<div class="zTreeDemoBackground left" style="height:100%;">
+    <div style="width: 100%;height: 15px;background: #f0f6e4;">
+        <p style="padding-left: 8px;padding-top: 4px;">产品模板</p>
+    </div>
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+<div style="width:100%;height:100%;">
+    <div style="width:100px;height:100%;float: left;margin-left:5px;margin-top: 10px;margin-bottom: 10px;">
+        <div style = "height:100%;border:1px solid #e6e6e6;">
+            <div style="height:25px;background-color:#f2f2f2">
+                <span>产品模板项</span>
+            </div>
+            <div id="templateItem" style="margin-left:10px;">
+				<span><a id="a_theme_no">期刊号</a></span><br>
+                <span><a id="a_theme_header">产品名称</a></span><br>
+                <span><a id="a_theme_unit" >发布单位</a></span><br>
+                <span><a id="a_theme_number">期号</a></span><br>
+                <span><a id="a_theme_time">发布时间</a></span><br>
+                <span><a id="a_theme_heatline">上分割线</a></span><br>
+                <span><a id="a_theme_title1">副标题</a></span><br>
+                <span><a id="a_theme_imgpath1">图片1</a></span><br>
+                <span><a id="a_theme_content1">内容1</a></span><br>
+                <span><a id="a_theme_imgpath2">图片2</a></span><br>
+                <span><a id="a_theme_content2">内容2</a></span><br>
+                <span><a id="a_theme_warn">防御措施</a></span><br>
+                <span><a id="a_theme_spend">抄送</a></span><br>
+                <span><a id="a_theme_publishunit1">署名单位</a></span><br>
+                <span><a id="a_theme_checker">签发</a></span><br>
+                <span><a id="a_theme_createer">预报员署名</a></span><br>
+                <span><a id="a_theme_endline1">尾分割线1</a></span><br>
+                <span><a id="a_theme_endline2">尾分割线2</a></span><br>
+            </div>
+        </div>
+    </div>
+    <div style="width:1044px;height:100%;float: right;margin-top: 10px;margin-right:5px">
+        <div style="height:100%;width:880px;float: left;margin-top: 0px;margin-right:10px">
+            <div style = "border: 2px solid #e6e6e6;margin-bottom:10px">
+                <div style="height:25px;background-color:#f2f2f2;">
+                    <span>重要天气报模板</span>
+                </div><div style="width:660px;padding-left:100px;margin-top: 10px;margin-bottom: 10px;">
+                <div id="content" style="width:100%;">
+                    <table style="width:100%;">
+                        <tr><td>
+                            <input type="text" id="theme_no" data-bind-product="theme_no" style="text-align:right;width:100%;color:#000000;border:0px;font-size: 16px;font-family:'微软雅黑';" value="鲁政简XXX号">
+                        </td></tr>
+						<tr><td >
+                        <div id="title" style="text-align:center;color:#FF0000"><input id="theme_header" type="text" style="width:100%;color:#FF0000;border:0px;text-align: center;font-size: 58px;font-family:'微软雅黑';font-weight:bold;" data-bind-product="theme_header" value="重要天气预报"></div>
+                        </td></tr>
+                        <tr><td><table style="width:100%;"><tr>
+                            <td style="width:33%"><div style="float:left"><input id="theme_unit" type="text" style="color:#000000;border:0px;text-align: left;font-size: 16px;font-family:'微软雅黑';font-weight:bold;" data-bind-product="theme_unit" value="<山东省气象台>"></div>
+                            </td>
+                            <td style="text-align:center;width:33%"><div style=""><input id="theme_number" type="text" style="color:#000000;border:0px;text-align: center;font-size: 16px;font-family:'微软雅黑';font-weight:bold;" data-bind-product="theme_number" value="第XX期"></div>
+                            </td>
+                            <td style="text-align:right;width:33%"><div style="width:100%;float:right;"><input id="theme_time" type="text" style="color:#000000;border:0px;text-align: right;font-size: 16px;font-family:'微软雅黑';font-weight:bold;" data-bind-product="theme_time" value="yyyy年MM月dd"></div>
+                            </td>
+                            </tr></table>
+                        </td></tr>
+                        <tr><td>
+                            <div id="theme_heatline" style = "width:100%;color:#FF0000;border:1px solid #FF0000;font-family:'微软雅黑';"></div>
+                        </td></tr>
+                        <tr><td>
+                            <input type="text" id="theme_title1" data-bind-product="theme_title1" style="width:100%;text-align:center;color:#000000;border:0px;font-size: 26px;font-family:'微软雅黑';" value="<发布大雾橙色预警信号>">
+                        </td></tr>
+                        <tr><td>
+                            <img id="theme_imgpath1" src="img/div_mapPic.png" style="width:100%;font-family:'微软雅黑';">
+                        </td></tr>
+                        <tr><td>
+                            <textarea id="theme_content1" data-bind-product="theme_content1"  style="width:100%;color:#000000;border:0px;font-size: 16px;">&nbsp;&nbsp;<第一段文字说明></textarea>
+                        </td></tr>
+                        <tr><td>
+                            <img id="theme_imgpath2" src="img/div_mapPic.png" style="display:none;width:100%;font-family:'微软雅黑';">
+                        </td></tr>
+                        <tr><td>
+                            <textarea id="theme_content2" data-bind-product="theme_content2" style="width:100%;color:#000000;border:0px;font-size: 16px;">&nbsp;&nbsp;<第二段文字说明描述内容。></textarea>
+                        </td></tr>
+                        <tr><td>
+                            <textarea id="theme_warn" data-bind-product="theme_warn" rows="5" style="text-align:left;width:100%;; color:#000000;border:0px;font-size: 14px;">防御指南：
+    1. 空气质量差，人员需适当防护；
+    2. 一般人群减少户外活动，儿童、老人及易感人群应尽量避免外出；
+    3.能见度差，驾驶人员谨慎驾驶。
+                            </textarea>
+                        </td></tr>
+                        <tr><td>
+                            <input type="text" id="theme_checker" data-bind-product="theme_checker"  style="text-align:left;width:40%;color:#000000;border:0px;font-size: 14px;font-family:'宋体';" value="签发：<王西磊>">
+                            <input type="text" id="theme_createer" data-bind-product="theme_createer" style="text-align:right;width:50%;float:right;color:#000000;border:0px;font-size: 14px;font-family:'宋体';" value="预报员：<郭俊建>">
+                        </td></tr>
+                        <tr><td>
+                            <div id="theme_endline1" style = "width:100%;color:#708090;border:1px solid #708090;font-family:'微软雅黑';"></div>
+                        </td></tr>
+                        <tr><td>
+                            <textarea id="theme_spend" data-bind-product="theme_spend" rows="6" style="text-align:left;width:100%;color:#000000;border:0px;font-size: 12px;font-family:'宋体';">分送：中共山东省委办公厅、山东省人民政府办公厅、省委办公厅信息处、省政府应急办、省发展和改革委员会、省教育厅、省民政厅、省住房和城乡建设厅、省交通运输厅、省水利厅、省农业厅、省海洋与渔业厅、省林业厅、省文化厅、省卫生计生委、省新闻出版广电局、省统计局、省安全生产监督管理局、山东黄河河务局、山东海事局、省煤矿安全监察局、省粮食局、国家统计局山东调查总队、北部战区陆军、山东省军区、交通运输部北海救助局、省煤炭工业局、省卫视、省广播电台
+                            </textarea>
+                        </td></tr>
+                        <tr><td>
+                            <div id="theme_endline2" style = "width:100%;color:#708090;border:  1px solid #708090;font-family:'微软雅黑';"></div>
+                        </td></tr>
+                    </table>
+                </div>
+            </div></div>
+        </div>
+        <div style = "width:150px;float:right;border:  1px solid #e6e6e6;">
+            <div style="height:25px;background-color:#f2f2f2">
+                <span>产品项属性</span>
+            </div>
+            <div id="itemProper" style="padding-left: 10px">
+                <table><thead><tr><td>属性&nbsp;&nbsp;</td><td>属性值</td></tr></thead>
+                    <tbody>
+                    <tr><td>显隐</td><td><select id="s_display" style="width:80px"><option value="block">可见</option><option value="none">隐藏</option></select></td></tr>
+                    <tr><td>字体</td><td><select id="s_font-family" style="width:80px"><option value="宋体">宋体</option><option value="微软雅黑">微软雅黑</option><option value="华文中宋">华文中宋</option><option value="黑体">黑体</option></select></td></tr>
+                    <tr><td>大小</td><td><input id="s_font-size" type="text" size=7 value="18px"></td></tr>
+                    <tr><td>颜色</td><td><select id="s_color" style="width:80px"><option value="red">红色</option><option value="black">黑色</option><option value="darkgray">灰色</option></select></td></tr>
+                    <tr><td>对齐</td><td><select id="s_text-align" style="width:80px"><option value="left">左对齐</option><option value="center">居中</option><option value="right">右对齐</option></select></td></tr>
+                    <tr><td>加粗</td><td><select id="s_font-weight" style="width:80px"><option value="normal">正常</option><option value="bold">加粗</option></select></td></tr>
+                    <tr><td>高度</td><td><input id="s_height" type="text" size=7 value="20px"></td></tr>
+                    <tr><td></td><td></td></tr>
+                    </tbody></table>
+            </div>
+        </div><div><button id="productSave" style="padding-left:10px;padding-top:5px;padding-right:10px;margin-left:30px;;padding-bottom:5px;margin-top:10px;font-size: 16px;border:0px;font-weight:bold;font-family:'微软雅黑';">保存模板</button><button id="productReSet" style="padding-left:10px;padding-top:5px;padding-right:10px;margin-left:30px;;padding-bottom:5px;margin-top:10px;font-size: 16px;border:0px;font-weight:bold;font-family:'微软雅黑';">删除模板</button></div>
+
+    </div>
+</div>
+
+</BODY>
+</HTML>

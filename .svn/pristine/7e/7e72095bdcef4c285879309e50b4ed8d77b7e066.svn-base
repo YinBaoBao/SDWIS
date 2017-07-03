@@ -1,0 +1,10 @@
+[
+    { "id": "001", "date": "2017-01-10 12:00:00", "color": "orange", "type": "waterblue", "city": "济南市", "lon": 116.98, "lat": 36.67 },
+    { "id": "002", "date": "2017-01-10 13:00:00", "color": "yellow", "type": "waterblue", "city": "青岛市", "lon": 120.38, "lat": 36.07 },
+    { "id": "003", "date": "2017-01-10 14:00:00", "color": "blue", "type": "waterorange", "city": "莱西市", "lon": 120.5, "lat": 36.87 },
+    { "id": "004", "date": "2017-01-10 14:00:00", "color": "red", "type": "waterorange", "city": "淄博市", "lon": 118.05, "lat": 36.82 },
+    { "id": "005", "date": "2017-01-10 16:00:00", "color": "orange", "type": "waterred", "city": "枣庄市", "lon": 117.32, "lat": 34.82 },
+    { "id": "006", "date": "2017-01-10 15:00:00", "color": "blue", "type": "waterred", "city": "东营市", "lon": 118.67, "lat": 37.43 },
+    { "id": "007", "date": "2017-01-10 17:00:00", "color": "red", "type": "wateryellow", "city": "烟台市", "lon": 121.43, "lat": 37.45 },
+    { "id": "008", "date": "2017-01-11 12:00:00", "color": "red", "type": "wateryellow", "city": "潍坊市", "lon": 119.15, "lat": 36.7 }
+]

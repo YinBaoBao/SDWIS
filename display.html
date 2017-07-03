@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>格点产品展示</title>
+		<link rel="stylesheet" href="css/zui.min.css"/>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/common.css"/>
+		<link rel="stylesheet" href="css/datetimepicker.min.css"/>
+		<link rel="stylesheet" href="css/buttons.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/cpzs.css"/>
+
+        <!-- add by luckyD on 20170424 通用配置文件 -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/buttons.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/zui.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-modal.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
+		<script type="text/javascript" src="js/highcharts/highcharts-zh_CN.js"></script>
+		<script type="text/javascript" src="js/highcharts/exporting.js"></script>
+		<script type="text/javascript" src="js/config/config.js" ></script>
+		<script type="text/javascript" src="js/DataClass/CIMISS-Data.js" ></script>
+		<!-- moment -->
+		<script type="text/javascript" src="assets/moment/moment.min.js"></script>
+		<script type="text/javascript" src="assets/moment/zh-cn.js"></script>
+		<script type="text/javascript" src="assets/viewer/viewer.js"></script>
+		<script type="text/javascript" src="js/util/clazz.js"></script>
+		<script type="text/javascript" src="js/util/helper.js"></script>
+		<script type="text/javascript" src="js/buttons.js"></script>
+		<script type="text/javascript" src='libs/WeatherMap.Include.js'></script>
+		<!--  -->
+		<script type="text/javascript" src="assets/select2-4.0.3/dist/js/select2.full.js"></script>
+		<script type="text/javascript" src="assets/layer/layer.js"></script>
+		<script type="text/javascript" src="assets/layui-v1.0.9_rls/layui.js" charset="utf-8"></script>
+		<!-- ztree插件 -->
+		<script type="text/javascript" src="assets/ztree/js/jquery.ztree.all.min.js"></script>
+		<!--  -->
+		<script type="text/javascript" src="assets/handsontable/js/handsontable.full.js"></script>
+		<script type="text/javascript" src="assets/handsontable/js/handsontable.addon.js"></script>
+		<script type="text/javascript" src="js/Import.js"></script>
+		<script type="text/javascript" src="js/ImportFromGrid.js"></script>
+		<script type="text/javascript" src="js/ImportFromFile.js"></script>
+		<script type="text/javascript" src="js/ImportFromStation.js"></script>
+		<script type="text/javascript" src="assets/html2canvas.js"></script>
+		<script type="text/javascript" src="assets/jquery.jeditable.js"></script>
+		<script type="text/javascript" src="js/SPDPrint.js"></script>
+		<!--  -->
+		<script type="text/javascript" src="js/styles/plotStyles_surface.js"></script>
+		<script type="text/javascript" src="js/styles/plotStyles_hight.js"></script>
+		<script type="text/javascript" src="js/styles/plotStyles_rhjc.js"></script>
+		<script type="text/javascript" src="js/styles/plotStyles_zhjc.js"></script>
+		<script type="text/javascript" src="js/styles/rain1hStyles.js"></script>
+		<script type="text/javascript" src="js/styles/rain3hStyles.js"></script>
+		<script type="text/javascript" src="js/styles/rain6hStyles.js"></script>
+		<script type="text/javascript" src="js/styles/rain12hStyles.js"></script>
+		<script type="text/javascript" src="js/styles/rain24hStyles.js"></script>
+		<script type="text/javascript" src="js/styles/windStyles.js"></script>
+		<script type="text/javascript" src="js/styles/tempStyles.js"></script>
+		<script type="text/javascript" src="js/styles/rhStyles.js"></script>
+		<script type="text/javascript" src="js/styles/tccStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_TempStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_RHStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_TCCStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_Rain24Styles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_RadarStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_500hPaHightStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_IR1Styles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_IR2Styles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_IR3Styles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_IR4Styles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_VISStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_FYVISStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_10uvStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_AirStyles.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_WStyles.js"></script>
+		<script type="text/javascript" src="js/styles/plotStyles_skzl.js"></script>
+		<script type="text/javascript" src="js/styles/heatMap_WOfNoRainStyles.js"></script>
+		<script type="text/javascript" src="js/styles/plotStyles_rhjc.js"></script>
+		<script type="text/javascript" src="js/styles/riskMonitoringStyles.js"></script>
+		<script type="text/javascript" src="js/CommonFunction.js"></script>
+		<script type="text/javascript" src="js/Renderer/StreamLine.js"></script>
+		<script type="text/javascript" src="js/Renderer/NeonLine.js"></script>
+		<script type="text/javascript" src="js/Renderer/GlintAnimator.js"></script>
+		<script type="text/javascript" src="js/Controls/datetimepicker.min.js"></script>
+		<script type="text/javascript" src="js/Controls/Chart.js"></script>
+		<script type="text/javascript" src="js/Controls/ChartClass.js"></script>
+		<script type="text/javascript" src="js/Controls/DateSelecter.js"></script>
+		<script type="text/javascript" src="js/Controls/DateSelecterSK.js"></script>
+		<script type="text/javascript" src="js/Controls/dMapTools.js"></script>
+		<script type="text/javascript" src="js/Controls/YuBaoshixiaoTools.js"></script>
+		<script type="text/javascript" src="js/Controls/SideWrapper.js"></script>
+		<script type="text/javascript" src="js/Controls/MapSwitch.js"></script>
+		<script type="text/javascript" src="js/Controls/Legend.js"></script>
+		<script type="text/javascript" src="js/Controls/LegendCimiss.js"></script>
+		<script type="text/javascript" src="js/jquery-plug-ins.js"></script>
+		<script type="text/javascript" src="js/Controls/LegendManager.js"></script>
+		<script type="text/javascript" src="js/Controls/InputRangeDigit.js"></script>
+		<script type="text/javascript" src="js/CorrectAction.js"></script>
+		<script type="text/javascript" src="js/MagicTool.js"></script>
+		<script type="text/javascript" src="js/FilterTool.js"></script>
+		<script type="text/javascript" src="js/CrossRelation.js"></script>
+		<script type="text/javascript" src="js/CrossCorrection.js"></script>
+		<script type="text/javascript" src="js/Pages/PageBase.js"></script>
+		<script type="text/javascript" src="js/CommonClass/Common.js" ></script>
+		<script type="text/javascript" src="js/CommonClass/AlertSignalProduce.js" ></script>
+		<!--add by pope 趋势订正通用模块 -->
+		<script type="text/javascript" src="js/CommonClass/QSDZCommonClass.js" ></script>
+		<!--add by pope 县界填色模块 -->
+		<script type="text/javascript" src="js/extend/FillColors.js" ></script>
+		<!--add by pope 一致性检查模块 -->
+		<script type="text/javascript" src="js/extend/ConsistencyCheck.js" ></script>
+		<script type="text/javascript" src="js/Pages/SKZLPageClass.js"></script>
+		<script type="text/javascript" src="js/Pages/WXLDPageClass.js"></script>
+		<script type="text/javascript" src="js/Pages/SZMSPageClass.js"></script>
+		<script type="text/javascript" src="js/Pages/GDYBPageClass.js"></script>
+		<script type="text/javascript" src="js/Pages/ZDYBPageClass.js"></script>
+		<script type="text/javascript" src="js/Pages/XTGLPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/ZDYBSZPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/ZDGLPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/QTQSKPageClass.js" ></script>
+		<script type="text/javascript" src="js/zdyb.js"></script>
+		<script type="text/javascript" src="js/Pages/gdyb/GridManage.js"></script>
+		<script type="text/javascript" src="js/Pages/QTQLDPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/QTQYTPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/DLYJPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/DSYBPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/LJYBPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/SJZDPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/DisplayPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/GridDidplayPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/ZHYJPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/YJZDPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/ZDFXPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/YJXHPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/ZCDPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/QDLJCPageClass.js" ></script>
+		<script type="text/javascript" src="js/Pages/CPZSPageClass.js" ></script>
+		<script type="text/javascript" src="js/GridProductClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/CimissDataClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/RadarDataClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/AWXDataClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/MicapsDataClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/TextDataClass.js"></script>
+		<script type="text/javascript" src="js/DataClass/DataServer.js"></script>
+		<!-- 山洪预警管理模块 -->
+		<script type="text/javascript" src="js/Pages/Disaster/data.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/DataService.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/Layout/Layout.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskSurvey.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskAssessment.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskMonitoring.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskZoningMap.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskProduct.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/RiskInspection.js"></script>
+		<script type="text/javascript" src="js/Pages/Disaster/DisasterManage.js"></script>
+		<!--  -->
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayer.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayerBlackMap.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayerWhiteMap.js"></script>
+		<script type="text/javascript" src="js/Layers/ArcgisWMTSLayer.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayerTDTIMG.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayerTDTMAP.js"></script>
+		<script type="text/javascript" src="js/Layers/LocalTiledCacheLayerTDTTER.js"></script>
+		<script type="text/javascript" src="js/Layers/MappingLayer.js"></script>
+		<script type="text/javascript" src="js/DataCache.js"></script>
+		<script type="text/javascript" src="js/DataStack.js"></script>
+		<script type="text/javascript" src="js/GridAnalyst.js"></script>
+		<script type="text/javascript" src="js/Rect.js"></script>
+		<script type="text/javascript" src="js/Panels/DragPanelBase.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_Tools.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_LQDZ.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_QHDZ.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_QSDZ.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_FXDZ.js"></script>
+		<script type="text/javascript" src="js/Panels/Panel_RHJC.js"></script>
+		<script type="text/javascript" src="js/timeSlide.js"></script>
+		<script src="data/StreamLine.js"></script>
+		<script src="data/StreamLine_uv.js"></script>
+		<script src="data/winddata.js"></script>
+		<!-- mmgrid-->
+		<link rel="stylesheet" href="css/mmgrid/mmGrid-bootstrap.css" />
+		<link rel="stylesheet" href="css/mmgrid/mmGrid.css" />
+		<link rel="stylesheet" href="css/mmgrid/mmPaginator.css" />
+		<script type="text/javascript" src="js/mmGrid.js" ></script>
+		<!-- mmgrid end -->
+		<!-- artdialog -->
+		<link rel="stylesheet" href="css/artdialog/ui-dialog.css" />
+		<script type="text/javascript" src="css/artdialog/dialog-min.js" ></script>
+		<!-- artdialog end-->
+		<script type="text/javascript" src="js/jquery.form.js" ></script>
+		<script type="text/javascript" src="js/latticeForcast.js"></script>
+    </head>
+    <body>
+        <div class="body">
+            <div class="banner">
+                <div class="background">
+                </div>
+                <div class="logo">
+                    <img src="imgs/img_banner_titlie_display.png" height="100%">
+                </div>
+                <div id="login" style="...">
+                     <a href="nativ.html">返回首页</a>
+                </div>
+            </div>
+            <div id="content_div" class="content" style="margin-left: auto;margin-right: auto;width: 100%;">
+                <div id="workspace_div" style="width: 100%">
+                    <div id="gdzsDiv">
+						<div id="divTool" style="position: absolute;top: 15px;z-index: 100;left: 15px;border-radius: 5px;background-color: rgba(70,70,70,0.34);">
+							<div id='dateSelect' class="dataSelectGridPage" style='margin-left: 0px;padding-left: 10px;float:left;border-radius: 5px;'></div>
+							<select id='selectMakeTime' class="displaySelect"><option value='5'>05时</option><option value='16'>16时</option></select>
+							<select id='selectProductType' class="displaySelect"><option value='prvn_p'>省台指导</option><option value='cty_p'>市台订正</option></select>
+						</div>
+						<div id="rightPanel"></div>
+						<div id="bottomPanel">
+							<div id="progress-bar" class="progress-bar">
+							</div>
+						</div>
+						<div id="map"></div>
+						<div class="forcastDiv">
+							<div id="forcastForm" class="chartElement"></div>
+							<div id="formExt"></div>
+							<div id="fileTip" title="打开图表"></div>
+							<div id="belowDiv">
+								<div id="latticeTable"></div>
+								<div id="weatherDescription"></div>
+							</div>
+						</div>
+						<div id="mapSwitch_div" class="mapLayer">
+							<div>
+								<div>
+									<img id="curImg" class="mapNowImg" style="float: right;" flag="vec" src="imgs/img_map_loc_day.png">
+								</div>
+							</div>
+							<div id="div_tdt_ter" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
+								<div>
+									<div>
+										<img class="mapImg" flag="ter" src="imgs/img_map_tdt_ter.png">
+									</div>
+								</div>
+							</div>
+							<div id="div_tdt_map" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
+								<div>
+									<div>
+										<img class="mapImg" flag="vec" src="imgs/img_map_tdt_map.png">
+									</div>
+								</div>
+							</div>
+							<div id="div_loc_day" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
+								<div>
+									<div>
+										<img class="mapImg" flag="day" src="imgs/img_map_loc_day.png">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div id="cpxzDiv" style='background-color: rgb(240,240,240);height: 100%;left:410px;right: 0px;position: absolute;display: none;'>
+                        <div id="ZDYBAllContent" style="display: none;">
+                            <div style='height: 30px;line-height: 30px;background-color: #4C9ED9;margin-top: 1px;'><span id='zdybTitle' style='font-weight: bold;position: absolute;left: 50%;margin-left: -140px;'></span></div>
+                            <div id='zdybtableFiles' class="forecastFiles" style='overflow: auto;background-color:#ffffff'>
+                                <!--<table id='zdybtableFiles' class="tableFiles" border='1'></table>-->
+                            </div>
+                        </div>
+                        <div id="gdybProduct">
+                            <div style='height: 30px;line-height: 30px;background-color: #4C9ED9;margin-top: 1px;'><span id='gdybTitle' style='font-weight: bold;position: absolute;left: 50%;margin-left: -140px;'></span><span id='btnExportMicaps' style='float: right;font-size: 12;color:#0000ff;margin-right: 20px;cursor:pointer'>生成格点报</span></div>
+                            <div id='tableFiles' class="forecastFiles" style='overflow: auto;background-color:#ffffff'>
+                                <!--<table id='tableFiles' border='1'></table>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+		var dataSericeUrl = host+":8080/WMDataService/";
+		var gsDataService = host+":8080/GSDataService/";
+		var archiveService = host+":8080/SPDArchiveService/";
+		var nTickCount = 0;
+
+		$(document).ready(function(){
+
+			window.GDYB&&GDYB.Page.main(GDYB.CPZSPage);
+			//产品展示页面放大
+			setTimeout(function(){
+				GDYB.Page.curPage.map.setCenter(new WeatherMap.LonLat(mapConfig.centerX,mapConfig.centerY), 7);
+			}, 1500);
+		});
+
+		//鼠标滑过地图切换DIV
+		$(".mapLayer").hover(function(){
+			var $this = $(this).find(".moreMapLayer");
+			$this.css("display","block");
+		},function(){
+			var $this = $(this).find(".moreMapLayer");
+			$this.css("display","none");
+		});
+
+		//控制图表显示
+		$("#formExt, #fileTip").click(function(){
+			if(!$("#formExt").hasClass("active")){
+				hidforcastDiv();
+			}
+			else{
+				showforcastDiv();
+			}
+		});
+		function showforcastDiv(){
+			$(".forcastDiv").stop();
+			$("#formExt,#forcastForm").css("display","block");
+			$("#fileTip").css("display","none");
+			$(".forcastDiv").animate({"width":"600px"},1200,"linear",function(){
+				$("#formExt").css({"border-left-color":"rgba(102,102,102,1)","border-right-color":"rgba(102,102,102,0)"}).removeClass("active");
+				$("#belowDiv").slideDown(500);
+			});
+		}
+		function hidforcastDiv(){
+			$(".forcastDiv").stop();
+			$("#belowDiv").slideUp(500);
+			$(".forcastDiv").animate({"width":"0"},1200,"linear",function(){
+				$("#forcastForm").css("display","none");
+				$("#fileTip").css("display","block");
+				$("#formExt").css({"border-left-color":"rgba(102,102,102,0)","border-right-color":"rgba(102,102,102,0.7)"}).addClass("active");
+			});
+		}
+        $("#a_exit").click(function(){
+            if(this.innerHTML == "退出") {
+                GDYB.GridProductClass.currentUserName = null;
+
+                $("#span_user")[0].innerHTML = "未登录";
+                $.cookie('password', '', { expires: -1 });      //如果退出，不记录密码
+                $.cookie("rmbUser", 'false', { expire: -1 });   //如果退出，不记录密码
+                this.innerHTML = "登录";
+            }
+            else if(this.innerHTML == "登录") {
+                window.location.href="index.html";
+            }
+        });
+
+        $("#menu_bd").hover(function(){
+            $("#displayBtn").css("display", "block");
+        });
+        $("#menu_bd").mouseleave(function(){
+            setTimeout("$('#displayBtn').css('display', 'none')",5000);
+        });
+
+    </script>
+</html>

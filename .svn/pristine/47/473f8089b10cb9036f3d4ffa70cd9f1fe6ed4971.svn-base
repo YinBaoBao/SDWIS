@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/login2.css"/>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/config/config.js" ></script>
+	<script type="text/javascript" src="js/CommonFunction.js"></script>
+	<link rel="stylesheet" href="css/spd_ly.css" />
+    <title>山东气象业务一体化平台</title>
+	<script type="text/javascript">
+        $(function(){
+			if($.cookie("departCode")!=null&&$.cookie("departCode").length>1){
+				$("#span_user")[0].innerHTML =$.cookie("departName")+'-'+$.cookie("showName");
+				$("#a_exit")[0].innerHTML = "退出";
+			}
+			$("#span_user").click(function(){
+				if($(this).html() != "未登录"){
+					window.location = "personCenter.html";
+				}
+			});
+			$("#a_exit").click(function(){
+				if(this.innerHTML == "退出") {
+					$("#span_user")[0].innerHTML = "未登录";
+					$.cookie('password', '', { expires: -1 });      //如果退出，不记录密码
+					$.cookie("rmbUser", 'false', { expire: -1 });   //如果退出，不记录密码
+					$.cookie("departCode", '', { expire: -1 });   //如果退出，不记录密码
+					this.innerHTML = "登录";
+				}
+				else if(this.innerHTML == "登录") {
+					window.location.href="index.html";
+				}
+			});
+            $("#div_zdqg").click(function(){//天气实况
+			    window.location.href="weather.html";
+			});
+            $("#div_river").click(function(){//山洪预警
+                window.location.href="river.html";
+            });
+            $("#div_grid").click(function(){//格点预报
+				checkLoginAndOpenUrl("GDYB","grid.html");
+                //window.location.href="grid.html";
+            });
+            $("#div_dlg").click(function(){//短临岗
+                window.location.href="dlyb.html";
+            });
+			$("#div_product").click(function(){//产品发布管理
+				checkLoginAndOpenUrl("YBZZ","product.html");
+                //window.location.href="product.html";
+            });
+            $("#div_cpzs").click(function(){//产品展示
+                window.location.href="display.html";
+            });
+			$("#div_ybjy").click(function(){//预报检验
+				window.location.href="verify.html";
+			});
+			$("#div_cjwt").click(function(){//常见问题
+				window.location.href="upload/gdybfqa.html";
+			});
+			$("#div_tjllq").click(function(){//推荐浏览器
+				window.location.href="upload/Chrome.rar";
+			});
+			$("#div_ywgl").click(function(){//业务管理
+				checkLoginAndOpenUrl("YBYW","../YBYW/index.html");
+				//window.location.href="../YBYW/index.html";
+			});
+            $(".menuDiv").hover(function(){
+                var $this = $(this).find("img");
+                $this.css("box-shadow","3px 3px 4px 1px #555");
+            },function(){
+                var $this = $(this).find("img");
+                $this.css("box-shadow","");
+            });
+        });
+    </script>
+</head>
+<body style="height: 100%;margin: 0px;overflow: hidden;font-family: Microsoft YaHei;">
+    <div class="loginBackground">
+        <img src="imgs/login/bodyBackground.png" width="100%" height="100%" style="margin:0px;z-index: -1;height: inherit;background-image: linear-gradient(to bottom, #83c3ff 0px, #007df1 100%)">
+    </div>
+	<div id="login" style="position:absolute;right:10px;top:10px;z-index:9999">
+		<span>当前用户：</span><span id="span_user" style="cursor: pointer;">未登录</span>&nbsp;&nbsp;<a id="a_exit">登录</a>
+	</div>
+    <div class="loginBackground">
+        <img src="imgs/img_banner_titlie.png" style="position: absolute;left: 50%;margin-left: -200px;top: 10%;">
+        <div style="position: absolute;width: 1150px;left:calc(50% - 470px);top: 25%;margin-top: 0px;">
+			 <table style='border-spacing:5px;border-collapse:separate;'><tr><td>
+				<div class="box">
+					<div id="div_zdqg">天气实况</div>
+				</div>
+				</td><td>
+				<div class="box">
+				<div id="div_dlg">短临预报</div>
+				</div></td><td>
+				<div class="box">
+					<div id="div_river">山洪预警</div>
+				</div></td><td>
+				<div class="box">
+					<div id="div_grid">格点预报</div>
+				</div></td>
+				</tr><tr><td>
+				<div class="box">
+					<div id="div_product">预报制作发布</div>
+				</div></td><td>
+				<div class="box">
+					<div id="div_cpzs">预报查询</div>
+				</div>
+				</td><td>
+				<div class="box">
+					<div id="div_ybjy">预报检验</div>
+				</div></td><td>
+				<div class="box">
+					<div id="div_ywgl">业务管理</div>
+				</div></td><td>
+				</tr>
+			</table>
+        </div>
+        <div style="position: absolute;width: 200px;right:50px;top: 25%;margin-top: 0px;">
+            <div class="linkTitle">常用系统</div>
+            <div id="linkDiv">
+                <br>
+                <table>
+                    <tr><td><a href="javascript:window.open('http://10.1.64.146/npt','_blank');">中央台天气业务内网</a></td></tr>
+                    <tr><td><a href="javascript:window.open('http://172.18.200.217','_blank')">灾害天气监测预警</a></td></tr>
+                    <tr><td><a href="javascript:window.open('http://172.18.200.216/hyyb/','_blank');">海洋业务平台</a></td></tr>
+                    <tr><td><a href="javascript:window.open('http://172.18.200.210/','_blank');">环境业务平台</a></td></tr>
+                    <tr><td><a href="javascript:window.open('http://10.76.10.99/','_blank');">山东省数值预报业务平台</a></td></tr>
+                    <tr><td><a href="javascript:window.open('http://10.76.10.168/software/','_blank');">常用业务软件</a></td></tr>
+					<tr><td><a href="javascript:window.open('http://10.76.10.168/comm/','_blank');">业务平台交流讨论</a></td></tr>
+                    <tr><td><a href="javascript:window.open('team.html','_blank');">项目团队</a></td></tr>
+                    <tr><td><a href="javascript:window.open('docs/GDYB_UserManual.pdf','_blank');">用户手册</a></td></tr>
+                </tr></table>
+            </div>
+        </div>
+		<div id="div_foot">Copyright &copy; 2015 山东省气象台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京思湃德信息技术有限公司</div>
+    </div>
+	<!--登录框-->
+	<div id="loginPanel" class="loginPanel">
+		<div id="loginDiv" class="loginDiv">
+			<div class="loginHeader" onmousedown="drag(document.getElementById('loginDiv'),event)">
+				<span>山东省气象业务一体化平台</span>
+				<div class="windowInfoClose" style="line-height: 38px;" onclick="closeLogin()">X</div>
+			</div>
+			<div style="width: 100%;height: 44px;margin-top: 25px;">
+				 <input id="userName" type="text" class="loginParamInput" placeholder="用户名:">
+				<div style="margin-left: 32px;"><span id="passwordShow" class="loginTip"></span></div>
+			</div>
+			<div style="width: 100%;height: 40px;margin-top: 20px;">
+					<input id="password" type="password"  class="loginParamInput" placeholder="密码:">
+				<!--onFocus="loginOnFocus(this)" onBlur="loginOnBlur(this)" onchange="loginChange()"-->
+			</div>
+			<div style="margin-top: 10px;padding-top: 6px;height: 20px;">
+				<input id="ck_rmbUser" type="checkbox" style="margin-left: 32px;vertical-align: middle;" checked="true"/>
+				<label style="vertical-align:middle; ">保存密码</label>
+			</div>
+			<div style="width: 100%;height: 40px;margin-top: 10px;">
+				<div id ="btnLogin" onclick="login()" class="loginButton">登录</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

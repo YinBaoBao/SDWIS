@@ -1,0 +1,71 @@
+a:hover{text-decoration:none}
+.btn-line1{
+	text-align: center;
+	padding: 0 0 5px 0;
+ }
+.btn-line1 button{
+	width: 215px;
+}
+.btn-line2 button{
+	width: 104px;
+	margin: 6px 3px 0px  3px;
+}
+.btn-line3{
+	text-align: center;
+	padding: 0 0 5px 0;
+}
+.btn-line3 button{
+	width: 68px;
+}
+.btn-control2{
+	text-align: center;
+	padding: 0 0 5px 0;
+}
+.btn-control2 button{
+	width: 104px;
+	background-color:rgb(113,211,140);
+}
+.btn-control2 button:hover,.btn-control2 button.active{
+	border: solid 1px #379CE2;
+	outline:none;
+	color: #fefefe;
+	background:rgb(113,211,140);
+}
+.menu_ds button:hover,.menu_ds button.active{
+	border: solid 1px #379CE2;
+	outline:none;
+	color: #fefefe;
+	background: rgba(113,211,140,1);
+	/*background: rgba(119,180,254,1);*/
+}
+.timeDiv{
+	padding: 0 0 5px 0;
+}
+.titleDiv{
+	text-align: center;
+	/*padding: 24px;*/
+	margin: 0;
+	font-family: helvetica,arial,sans-serif;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	/*text-shadow:0 0 0.2em #f87, -0 -0 0.2em #f87;*/
+}
+
+.threed{
+	font-size: 16px;
+	text-align: center;
+	color: #1a1a1a;
+	letter-spacing: 0;
+	text-shadow:
+	0px 1px 0px #999,
+	0px 2px 0px #888,
+	0px 3px 0px #777,
+	0px 4px 0px #666,
+	0px 5px 0px #555,
+	0px 6px 0px #444,
+	0px 7px 0px #333,
+	0px 8px 7px #001135;
+}
+

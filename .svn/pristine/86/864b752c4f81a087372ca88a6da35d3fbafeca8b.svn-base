@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>角色管理</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/login2.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/spd_ly.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/font-awesome-ie7.min.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/layer.css" type="text/css" media="screen"/>
+	<script type="text/javascript" src="js/config/config.js" ></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/Controls/LY_GetProductName.js"></script>
+	<script type="text/javascript" src="assets/layer/layer.js"></script>
+	<script type="text/javascript">
+		//定义函数原型，用以存储(prototype)页面上各个函数和属性
+		function authoryIP(){}
+		$(function(){
+
+			///关闭窗口方法
+			$("#btn_cancel").click(function(){
+				var userAgent = navigator.userAgent;
+				if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) {
+					window.location.replace("about:blank");
+				} else {
+					window.opener = null;
+					window.open("", "_self");
+					window.close();
+				}
+			});
+
+
+		});
+		authoryIP.prototype.closeLogin=function(){
+			this.parent.closeIFrame();
+		}
+
+
+		//查询IP信息
+		authoryIP.prototype.roleName=null;
+		authoryIP.prototype.roleType=null;
+		authoryIP.prototype.selectMachineInfo=function() {
+			this.roleName = document.getElementById("roleName").value;
+			this. roleType = document.getElementById("roleType").value;
+			//if(machineIP!="" || machineName!=""){
+			authoryIP.prototype.authoripChart(this.roleName,this.roleType);
+			//}else{
+			//alert("您输入结果不能为空！");
+			//}
+		}
+
+
+	</script>
+	<script src="test/authority-ip.js"></script>
+</head>
+<body onload="authoryIP.prototype.selectMachineInfo()" style="height: 100%;margin: 0px;overflow: hidden;font-family: Microsoft YaHei;background-color:#ffffff;">
+<div id="machineBack" onclick="authoryIP.prototype.closeBack()"></div>
+<!---增加表单页面--->
+<div id="insertForm">
+	<div class="caption">增加角色信息</div>
+	<span style="margin-top: 10%;">新增角色：</span>
+	<input id="insert_Machine" type="text"/>
+	<span>新增类型：</span>
+	<input id="insert_Mname" type="text"/>
+
+	<div id="close_pane2" onclick="authoryIP.prototype.insert_hideDiv()"><i class="fa fa-times-circle close"></i><span>关闭</span></div>
+	<div id="insert_submit" onclick="authoryIP.prototype.insertMachineInfo()">确认新增</div>
+</div>
+
+<!---编辑页面--->
+<div id="machineForm">
+	<div class="caption">修改角色信息</div>
+	<span style="margin-top: 10%;">修改角色：</span>
+	<input id="machine_IP" type="text"/>
+	<span>修改类型：</span>
+	<input id="machine_Mname" type="text"/>
+
+	<div id="close_panel" onclick="authoryIP.prototype.hideDiv()"><i class="fa fa-times-circle close"></i><span>关闭</span></div>
+	<div id="edit_submit" onclick="authoryIP.prototype.editInfo()">确认修改</div>
+</div>
+<div class="width:100%;height=100%;margin:0px;z-index: -1 ">
+	<div class="loginHeader">
+		<span>角色管理</span>
+
+		<label style="margin-left: 100px;">角色名称&nbsp;&nbsp;</label>
+		<input id="roleName" type='text'/>
+
+		<label>&nbsp;&nbsp;角色类型&nbsp;&nbsp;</label>
+		<input id="roleType" type='text'/>&nbsp;&nbsp;
+		<a class="fa fa-search" href="javascript:void(0);" id="machineCheck" value='' onclick="" aria-hidden="true"></a>
+		<a class="fa fa-plus-circle" href="javascript:void(0);" id="addMachineInfo" value='' onclick="authoryIP.prototype.insert_popDiv()"  aria-hidden="true"></a>
+
+		<div class="windowInfoClose" style="line-height: 38px;" onclick="authoryIP.prototype.closeLogin()">X</div>
+	</div>
+	<div id="divBackground" class="loginBackground">
+
+		<div id="MachineList">
+			<ul class="mListCaption">
+				<li><span>角色名称</span><span>角色类型</span></li>
+			</ul>
+
+			<ul id="mListArea" style="display: block; overflow: auto; height: 508px;">
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+	//定义全局函数
+
+	authoryIP.prototype.newArry=[];
+	/////验证是否为空方法
+	//	function empty (val) {
+	//		if (val == null || val == undefined || val == '') {
+	//			return true;
+	//		} else {
+
+	//			return false;
+	//		}
+	//	}
+
+	//定义获取数据库对象数组
+
+	//查询功能
+	authoryIP.prototype.authoripChart=function(roleId,roleName){
+		////定义向后台发送数据的ajax参数
+		var param1='{"roleId":"'+roleId+'","roleName":"'+roleName+'"}';
+		////放空查询列表DOM元素
+		var $li = $("#mListArea").empty();
+		////将放空的DOM节点添加到父节点
+		$li.appendTo("#mListArea");
+
+		/////用来查询的ajax
+		$.ajax({
+			type: 'post',
+			url:  basicUserUrl + "/UserService/selRole", //ENVIServiceUrl+'services/data/query',
+			data: {'para': param1},//data:
+			dataType: 'json',
+			timeout:6500,
+			//设置数据同步；异步禁止：async: false ,
+			async: false,
+			///如果ajax请求成功将查询的数据data对象数组以参数形式返回
+			success: function (data) {
+				//如果从数据库查出的数据data对象中含有空的machinaName和authorityName，那么就给他们赋值一个空字符串，不让他们为默认值undefined
+				////打印出data数组
+
+				////循环遍历data对象的属性，判断如果为值"null"的将其赋值为空字符串''，若不为空，将原对象数据赋值给对象属性
+				for(var i in data){
+
+					data[i].roleName = data[i].roleName == undefined ? '' : data[i].roleName;
+					data[i].type = data[i].type == undefined ? '' : data[i].type;
+					////原生js遍历对象为dom子节点属性代码
+//					subNode=document.write("<li class='row'><span class='col-ip'>" + data[i].IP + "</span><span class='col-machineName'>" +  data[i].machineName + "</span><span>" +  data[i].authorityName + "</span><span><a class='fa fa-pencil-square-o'aria-hidden='true' href='javascript:void(0);' id='authorEdit' onclick='popDiv()'  value='修改'>&nbsp;&nbsp;修改</a></span><span><a class='fa fa-trash-o' aria-hidden='true' href='javascript:void(0);' id='authorEdit' value='删除'>&nbsp;&nbsp;删除</a></span></li>");
+
+//					document.getElementById("mListArea").appendchild(subNode);
+					////jQuery方式遍历对象为dom子节点属性代码
+					$("#mListArea").append("<li class='row'><span class='col-roleName'>" + data[i].roleName + "</span><span class='col-roleType'>" +  data[i].type + "</span><span><a class='fa fa-pencil-square-o'aria-hidden='true' href='javascript:void(0);' id='authorEdit' onclick='authoryIP.prototype.popDiv(this)'  value='修改'>&nbsp;&nbsp;修改</a></span><span><a class='fa fa-trash-o' aria-hidden='true' href='javascript:void(0);' id='dleteInfo' onclick='authoryIP.prototype.dropPopDiv(this)' value='删除'>&nbsp;&nbsp;删除</a></span></li>");
+				}
+				///将原对象数组的值赋值给全局数组newArry[];
+				authoryIP.prototype.newArry = data;
+
+
+			},
+			////若请求失败
+			error:function(obj){
+				////便打印出obj数据
+				console.log(obj);
+			}
+		});
+	}
+
+	///单击页面上查询按钮图标，便先执行判断是否为空事件
+	$('#machineCheck').on('click',function (e) {
+		//e.preventDefault取消事件的默认动作<该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。例如，如果 type 属性是 "submit"，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法，可以阻止提交表单。>
+		e.preventDefault();
+		////显示出查出的所有行
+		$('.row').show();
+
+		///获取id为"#MachineIP"的输入框的值，并去除空格
+		var inputroleName = $('#roleName').val().trim(),
+		///获取id为"#MachineName"的输入框的值，并去除空格
+			inputType = $('#roleType').val().trim();
+		///获取循环遍历出的所有DOM列表上列名为class=".col-ip"的值，并保存在$colsIP变量上
+		var $roleName = $('.col-roleName'),
+		///获取循环遍历出的所有DOM列表上列名为class=".col-machineName"的值，并保存在$colsIP变量上
+			$roleType = $('.col-roleType');
+
+
+		// 无输入 全部显示
+		if(!inputroleName && !inputType){
+			return;
+		}
+
+		// 如果输入IP信息，就执行以下匹配IP的操作
+		if(inputroleName){
+			///通过each循环遍历出所有的ip，来匹配input输入的ip值
+			$roleName.each(function () {
+				var $this = $(this);
+				///如果不匹配，就隐藏IP所在列表记录
+				if(!new RegExp(inputroleName).test($this.text())) {
+					$this.parent().hide();
+				}
+			});
+		}
+
+		///如果有输入的name信息，就执行以下匹配name的操作
+		if(inputType){
+			$roleType.each(function () {
+				///如果不匹配，就隐藏name所在列表记录
+				var $this = $(this);
+				//// 循环遍历name的值是否匹配，若不匹配，便隐藏记录；
+				if(!new RegExp(inputType).test($this.text())) {
+					$this.parent().hide();
+				}
+			});
+		}
+	});
+
+	//原生的验证方法
+	//	var sel = document.getElementById('MachineIp');
+	//	sel.onkeyup = function (ev) {
+	//		var inVal = ev.target.value;
+	//		console.log(inVal);
+	//		var eles = document.querySelectorAll('.col-ip');
+	//		for( var i=0,len=eles.length;i<len;i++){
+	//			var ele = eles[i];
+	//			var text = ele.innerText;
+	//				if(!new RegExp(inVal).test(text)) {
+	//					ele.style.display = 'none';
+	//				}
+	//			}
+	//
+	//
+	//		}
+	//		var reg=/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/g;
+	//        var newData =[];
+	//		for ( var i in tabData){
+	//			if (tabData[i].IP==reg.exec(inVal)){
+	//				newData[i] = tabData[i];
+	//			}else{
+	//				console.log(tabData[i]);
+	//
+	//			}
+	//		}
+	//	}
+
+
+
+
+	////新增功能
+	////关闭页面的方法
+	authoryIP.prototype.closeBack=function(){
+		///关闭新增表单页
+		document.getElementById('insertForm').style.display='none';
+		///关闭遮罩层页面
+		document.getElementById('machineBack').style.display='none';
+		///关闭编辑表单页
+		document.getElementById('machineForm').style.display='none';
+	}
+
+	///点击页面添加按钮，打开页面的方法
+	authoryIP.prototype.insert_popDiv=function(){
+		///关闭新增表单页
+		document.getElementById('insertForm').style.display='block';
+		///关闭遮罩层
+		document.getElementById('machineBack').style.display='block';
+
+	}
+
+	///点击弹出层关闭按钮，隐藏插入表单和背景层
+	authoryIP.prototype.insert_hideDiv=function(){
+		document.getElementById('insertForm').style.display='none';
+		document.getElementById('machineBack').style.display='none';
+	}
+	///点击新增确认按钮执行机制
+	authoryIP.prototype.insertMachineInfo=function(){
+		debugger;
+		//判断IP是否正确的正则
+		///获取插入表单中的IP的input的值
+	    var roleName = $("#insert_Machine").val();
+		///获取插入表单中的机器名input的值
+		var roleType = $("#insert_Mname").val();
+		debugger;
+		///如果验证输入的IP值正确，则执行以下结果
+
+			debugger;
+			///定义ajax的param参数的变量和键值对
+			var param = {
+				roleName: roleName,
+				roleType:roleType
+			}
+			///发送插入数据的ajax请求
+			$.ajax({
+				type: 'post',
+				url:  basicUserUrl + "/UserService/insertRole", //ENVIServiceUrl+'services/data/query',
+				data: {para: JSON.stringify(param)},//用stringify来转义param参数对象中的值:
+				dataType: 'json',
+				timeout:6500,
+				//设置数据同步；异步禁止：async: false ,
+				async: false,
+				///如果发送插入数据的ajax请求成功！便执行一下操作
+				success: function (data) {
+					debugger;
+					//如果从数据库查出的数据data对象中含有空的machinaName和authorityName，那么就给他们赋值一个空字符串，不让他们为默认值undefined
+					//提示插入数据成功的确认框
+					layer.confirm('插入数据成功', {
+						///漂亮的确定按钮
+						btn: ['确定'] //按钮
+					});
+				},
+				///如果发送插入数据的ajax失败！则打印出obj对象
+				error:function(obj){
+					console.log(obj);
+					//询问框
+					layer.confirm('插入数据错误！', {
+						btn: ['确定'] //按钮
+					});
+				}
+			});
+
+	}
+
+	////编辑功能
+
+	////点击页面编辑按钮事件机制，其中的element参数代表着当前选中子DOM节点对象
+	authoryIP.prototype.selectID=null;
+	authoryIP.prototype.popDiv=function(element){
+		///弹出修改机器信息页面
+		document.getElementById('machineForm').style.display='block';
+		///弹出遮罩层
+		document.getElementById('machineBack').style.display='block';
+
+		debugger;
+
+		//定义一个$row变量以保存点击按钮的父级的父级元素
+		var $row = $(element).parent().parent();
+		//定义一个ip变量用以保存通过父级标签（find）找到的类名为('.col-ip')子节点的text文本，也就是value;
+		var selText = $row.find('.col-roleName').text(),
+		//定义一个name变量用以保存通过父级标签（find）找到的类名为('.col-machineName')的子节点的value;
+			roleType = $row.find('.col-roleType').text();
+
+		//定义一个selectedVal变量用以保存循环遍历出result中的result[i].unacessurl值;
+
+
+		//向后台发起获取权限表信息的rest请求，以获取权限信息(authorityName和unaccessurl的值)
+		jQuery.post(basicUserUrl + "/UserService/selRole",{para: ''})
+		//获取权限列表信息的rest请求成功，执行以下操作：
+			.done(function(result){
+				debugger;
+				for(var i in result){
+					if(selText==result[i].roleName){
+						authoryIP.prototype.selectID=result[i].id;
+						var roleName=result[i].roleName;
+						var type=result[i].type;
+						authoryIP.prototype.showEditList(roleName,type);
+					}
+				}
+
+
+			})
+			///如果发送的rest请求失败，便执行以下操作
+			.fail(function () {
+				debugger;
+				//弹出提示框，提示修改数据出错
+				layer.confirm('获取数据失败！', {
+					btn: ['确定'] //按钮
+				});
+			});
+		///获取被选中记录的ID;
+//		debugger;
+//		for(var i = 0,len=authoryIP.prototype.newArry.length; i<len; i++){
+//
+//			if(selText===this.newArry[i].roleName){
+//				authoryIP.prototype.selectID=this.newArry[i].id;
+//				break;
+//			}
+//		}
+
+
+		///用来显示select的option列表内容的方法
+		authoryIP.prototype.showEditList=function(roleName,roleType){
+			//获取页面列表的IP值$("#machine_IP")值显示在弹出的编辑页面的输入框中
+			$("#machine_IP").val(roleName);
+			//获取页面列表的机器名称$("#machine_Mname")值显示在弹出的编辑页面的输入框中
+			$("#machine_Mname").val(roleType);
+
+		}
+	}
+
+	////点击弹出层编辑按钮事件机制
+	authoryIP.prototype.editInfo=function(){
+		//判断IP是否正确的正则
+
+		////定义editArry变量，以获取通过遍历newArry数组中的id值，定义selMachineIP，用以获取（"#machine_IP"）select的value值
+		var eidtRoleName=$("#machine_IP").val();
+		///循环遍历newArry对象中的IP和id值
+
+		var editRoleType = $("#machine_Mname").val();
+		var machineBeforeID= null;
+		///machineBeforeID用以获取以上通过遍历newArry出来的editArry（newArry[i].id）id值
+		for(var i=0;i<authoryIP.prototype.newArry.length;i++){
+			///如果select控件（"#machine_IP"）的value值等于循环遍历出的newArry的IP值，就执行以下操作
+			if(eidtRoleName === authoryIP.prototype.newArry[i].roleName){
+				///把遍历出来的id值赋值给editArry变量
+				machineBeforeID = authoryIP.prototype.newArry[i].id;
+				///遍历成功后break跳出for循环
+				break;
+			}else if(eidtRoleName!=authoryIP.prototype.newArry[i].roleName||machineBeforeID !=authoryIP.prototype.newArry[i].roleType){
+
+				machineBeforeID = authoryIP.prototype.selectID;
+
+				break;
+			}
+		}
+		debugger;
+
+//		///获取页面上机器IP的输入框$("#machine_IP")的value值
+//		var allCheckBox=document.querySelectorAll('.eidtCheck');
+//		var checkTemp=[];
+//
+//		for(var c=0,len=allCheckBox.length;c<len;c++){
+//			allCheckBox[c].checked ? checkTemp.push(allCheckBox[c].value) : '';
+//
+//		}
+//
+//		for(var k=0,len=authoryIP.prototype.newArry.length; k<len; k++){
+//			if(authoryIP.prototype.newArry[k].id==parseInt(machineBeforeID)){
+//				authoryIP.prototype.newArry[k].unaccessurl=checkTemp.join(',');
+//				machineBeforeAuhor=authoryIP.prototype.newArry[k].unaccessurl;
+//			}
+//		}
+
+
+
+
+		//如果IP输入格式正确，便拼凑param字符串，向数据库发出修改数据库请求
+
+			///定义向后台发送修改的param变量以及键值如下：
+			var param = {
+				///向后台发送的id名
+				roleId: machineBeforeID,
+				///向后台发送的ip名
+				roleName: eidtRoleName,
+				///向后台发送的机器名
+				roleType:editRoleType
+			}
+
+
+
+			debugger;
+			// '{"IP":"'+machine_BeforeIp+'","machineName":"'+machine_BeforeMname+'","authorityName":"'+machine_BeforeAuhor+'"}';
+			jQuery.post(basicUserUrl + "/UserService/editRole",{para: JSON.stringify(param)}) ///用JSON.stringify(param)转义rest请求参数
+			///向后台发送修改rest请求成功！便执行以下操作：
+				.done(function(result){
+					///请求成功提示
+					layer.confirm('修改数据成功', {
+						btn: ['确定'] //按钮
+					});
+				})
+				///请求失败提示
+				.fail(function () {
+					//请求失败提示框
+					layer.confirm('修改数据出错！', {
+						btn: ['确定'] //按钮
+					});
+				});
+
+			//输入IP地址无效提示框
+			layer.confirm('您输入的IP为无效项，请输入1-123！', {
+				btn: ['确定'] //按钮
+			});
+
+	}
+
+
+	////隐藏编辑弹出框
+	authoryIP.prototype.hideDiv=function(){
+		///隐藏编辑弹出层
+		document.getElementById('machineForm').style.display='none';
+		document.getElementById('machineBack').style.display='none';
+	}
+
+
+
+	////删除功能
+	authoryIP.prototype.dropPopDiv=function(element){
+		//定义四个向后台发送rest请求的param参数值
+		var deleteID=null,deleteIP=null,deleteMname=null,deleteAuthor=null;
+		//定义一个$row变量获得单击按钮（此对象）的父级的父级元素
+		var $row = $(element).parent().parent();
+		//定义一个ip变量获得通过父级元素find（）找到的子元素值并赋值
+		var roleName = $row.find('.col-roleName').text();
+		//遍历后台数据newArry数组，并把查询出数组的各个值赋值给各个变量
+		for (var i=0,len=authoryIP.prototype.newArry.length; i <len; i++){
+			//并判断输入的ip的值是否等于后台数据的ip,如果匹配就执行以下操作
+			if(roleName==authoryIP.prototype.newArry[i].roleName){
+				//把遍历出来的newArry中的newArry[i].id赋值给deleteID
+				deleteID=authoryIP.prototype.newArry[i].id;
+				deleteIP=authoryIP.prototype.newArry[i].roleName;
+				deleteMname=authoryIP.prototype.newArry[i].type;
+				//执行完操作跳出循环
+				break;
+			}
+		}
+		debugger;
+		//询问是否要删除此条数据，并将各个列的数据展示出来
+		layer.confirm('角色名为:'+deleteIP+'类型为:'+deleteMname+'的信息', {
+			btn: ['确定','取消'] //按钮
+			//若点了确定按钮执行以下操作
+		}, function(){
+
+			var param1={
+				deleteRole:deleteID
+			};
+			debugger;
+			jQuery.post(basicUserUrl + "/UserService/deleteRole",{para: JSON.stringify(param1)})
+				.done(function(result){
+					//询问框
+					layer.confirm('删除数据成功', {
+						btn: ['确定'] //按钮
+					});
+
+				})
+				.fail(function () {
+					//询问框
+					layer.confirm('删除数据失败！', {
+
+					});
+				});
+			//若点了取消，显示取消提示框
+		}, function(){
+			layer.msg('您取消了删除操作', {
+				time: 2000, //2s后自动关闭
+				icon: 1
+			});
+		});
+
+
+	}
+
+
+
+</script>
+</body>
+</html>

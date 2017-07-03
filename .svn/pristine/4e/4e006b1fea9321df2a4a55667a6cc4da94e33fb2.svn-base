@@ -1,0 +1,60 @@
+.messenger {
+    position: absolute;
+    z-index: 666;
+}
+
+.messenger.main {}
+
+
+/*tray start*/
+
+.messenger.tray {
+    text-align: center;
+    vertical-align: middle;
+    display: inline-flex;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.messenger.tray:not(.main) {
+    padding: 2px 4px;
+    background-color: #eee;
+    border: 1px solid #D9D9D9;
+}
+
+.messenger .tray-icon {
+    font-size: 3em;
+    color: #03a9f4;
+}
+
+.messenger .tray-title {
+    width: auto;
+    max-width: 120px;
+    /*padding-left: 10px;*/
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#main-tray {
+    right: 2px;
+    bottom: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 31px;
+    background: #daf3ff;
+}
+
+
+/*tray end*/
+
+.messenger.chat {}
+
+.messenger.alert {}
+
+.messenger.alert.info {}
+
+.messenger.alert.warn {}
+
+.messenger.alert.error {}

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>短临实况报警详情</title>
+	<link rel="stylesheet" href="DLWD/assets/css/amazeui.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="DLWD/assets/css/core.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/menu.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/index.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/admin.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/page/typography.css" />
+	<link rel="stylesheet" href="DLWD/assets/css/page/form.css" />
+</head>
+<body>
+<header class="am-topbar am-topbar-fixed-top">
+	<!--<ul class="am-nav am-navbar-nav am-navbar-center">
+		<li><h4 class="page-title">短临实况报警详情</h4></li>
+	</ul>-->
+</header>
+<div class="admin">
+	<!-- sidebar start -->
+	<div class="admin-sidebar am-offcanvas  am-padding-0" id="admin-offcanvas">
+		<div class="am-offcanvas-bar admin-offcanvas-bar">
+			<ul class="am-list admin-sidebar-list">
+				<li><a href="#" onclick='window.open("dlyb.html","_self");'><span class="am-icon-home"></span> 首页 <span class="am-icon-angle-left am-fr am-margin-right"></span></a></li>
+				<li class="admin-parent">
+					<!--<a href="#" onclick='window.open("dlwd.html","_self");' class="am-cf" ><i class="am-icon-line-chart" aria-hidden="true"></i>报警 & 统计 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+					<a onclick="history()" class="am-cf" style="cursor: pointer" ><i class="am-icon-line-chart" aria-hidden="true"></i>报警 & 统计 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+				</li>
+				<li class="admin-parent">
+					<a class="am-cf" onclick="holds()" style="cursor: pointer"><i class="am-icon-file" aria-hidden="true"></i> 阈值管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Start right Content here -->
+	<div class="content-page">
+		<!-- Start Chart -->
+		<div class="content" id="Chart">
+			<div class="card-box">
+				<div class="am-g">
+					<div  id="shuju" style="width: 100%;height: 250px;"></div>
+				</div>
+			</div>
+		</div>
+		<!-- End Chart -->
+		<!-- Start Table -->
+		<div class="content" id="Table">
+			<div class="card-box">
+				<!-- Row start -->
+				<div class="am-g" >
+					<ul class="am-nav am-navbar-nav am-navbar-center" >
+						<li><h4 style="text-align:center;font-weight: bolder" id="tabTitle">短临实况报警详情</h4></li>
+					</ul>
+					<div id="tabTools">
+						<div class="am-u-sm-12 am-u-md-6">
+							<div class="am-btn-toolbar">
+								<div id='datetime' class='date-time-picker'>
+									<div class='dateSelect'></div>
+									<span style="margin-left:25px;color:#5B5B5B;font-weight: bold">
+										共 <span id="rowCount" class="am-active">10</span> 条记录  &nbsp;&nbsp;&nbsp;（ 注: 调整时次可查看历史报警！）
+									</span>
+								</div>
+								<!--
+								  <div class="am-btn-group am-btn-group-xs">
+									<button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+									<button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
+									<button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
+									<button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+								  </div>
+								  -->
+							</div>
+						</div>
+
+						<div class="am-u-sm-12 am-u-md-3">
+							<div class="am-input-group am-input-group-sm">
+								<input type="text" class="am-form-field">
+								<span class="am-input-group-btn">
+								<button id="searchRec" class="am-btn am-btn-default" type="button">搜索</button>
+							  </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="am-g">
+					<div class="am-u-sm-12">
+						<div class="am-form">
+							<table class="am-table am-table-striped am-table-hover table-main">
+								<thead id="realTitle">
+								<tr>
+									<!--<th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">标题</th><th class="table-type">类别</th><th class="table-author am-hide-sm-only">作者</th><th class="table-date am-hide-sm-only">修改日期</th><th class="table-set">操作</th>-->
+									<th class="table-check"><input type="checkbox" /></th><!--<th class="table-id">ID</th>--><th class="table-title">报警点名称</th><th class="table-title">所在市</th><th class="table-type">报警类型</th><th class="table-date am-hide-sm-only">报警时间</th><th class="table-author am-hide-sm-only">处理状态</th><th class="table-author am-hide-sm-only">处理人</th><th class="table-set">操作</th>
+								</tr>
+								</thead>
+								<tbody id="realTab">
+								<!--
+								<tr>
+									<td><input type="checkbox" /></td>
+									<td>1</td>
+									<td>Business management</td>
+									<td>management</td>
+									<td class="am-hide-sm-only">测试1号</td>
+									<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+									<td>Business management</td>
+									<td>
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 标记已处理 </button>
+												<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								-->
+								</tbody>
+							</table>
+							<div class="am-cf">
+								<!--共 <span id="rowCount">10</span> 条记录-->
+								<!--
+                                <div class="am-fr">
+                                  <ul class="am-pagination">
+                                    <li class="am-disabled"><a href="#">«</a></li>
+                                    <li class="am-active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                  </ul>
+                                </div>
+                              -->
+							</div>
+							<hr />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Table -->
+	</div>
+</div>
+<!-- end right Content here -->
+<!--</div>-->
+</div>
+</div>
+
+<!-- navbar
+<a href="admin-offcanvas" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"><!--<i class="fa fa-bars" aria-hidden="true"></i>--></a>
+-->
+<script type="text/javascript" src="DLWD/assets/js/jquery-2.1.0.js" ></script>
+<script type="text/javascript" src="DLWD/assets/js/amazeui.min.js"></script>
+<!--<script type="text/javascript" src="DLWD/assets/js/app.js" ></script>-->
+<script type="text/javascript" src="DLWD/assets/js/blockUI.js" ></script>
+<script type="text/javascript" src="DLWD/assets/js/charts/echarts.min.js" ></script>
+<script type="text/javascript" src="DLWD/assets/js/charts/lineChart.js" ></script>
+
+
+<link rel="stylesheet" href="css/messenger.css" type="text/css">
+<link rel="stylesheet" href="assets/select2-4.0.3/dist/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="assets/layui-v1.0.9_rls/css/layui.css"  media="all">
+<link rel="stylesheet" href="css/login2.css"/>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/datetimepicker.min.css"/>
+<style>
+body{
+	background: #ebeff2;
+}
+/**日期选择器**/
+.dateSelect{
+	margin-left: 15px;
+	border-radius: 2px;
+	border-collapse: separate;
+	float:left;
+}
+.dateSelect .dateBtn{
+	margin: 0px 0px 0px 0px;
+	cursor:pointer;
+}
+.dateBtn.dateBtnUp,
+.dateBtn.dateBtnDown {
+	position: relative;
+	width: 14px;
+	height: 7px;
+}
+
+.dateSelect .dateBtn.dateBtnUp{
+	top: -8px;
+	left: 7px;
+}
+
+.dateSelect .dateBtnDown{
+	top: 3px;
+	left: -7px;
+}
+
+.dateSelect input{
+	margin: 0;
+	border: 0px;
+	width: 150px;
+	font-size: 14px;
+	font-weight: bold;
+	background: none;
+	text-align: center;
+}
+</style>
+<script type="text/javascript" src="js/config/config.js" ></script>
+<script type="text/javascript" src="assets/html2canvas.js"></script>
+<script type="text/javascript" src="js/CommonFunction.js"></script>
+<script type="text/javascript" src="js/Controls/datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/Controls/DateSelecter.js"></script>
+<script type="text/javascript" src="js/Controls/DateSelecterSK.js"></script>
+<script type="text/javascript" src="js/Controls/dMapTools.js"></script>
+<script type="text/javascript" src="js/util/TimerUtil.js"></script>
+<script type="text/javascript" src="js/util/LayerUtil.js"></script>
+<script type="text/javascript" src="js/util/DateUtils.js"></script>
+<script type="text/javascript" src="assets/layer/layer.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="assets/layer/layer.js"></script>
+<script type="text/javascript" src="assets/layui-v1.0.9_rls/layui.js" charset="utf-8"></script>
+<script type="text/javascript" >
+	var dmt = new dMapTools();
+	var myDateSelecter = new DateSelecter(2,2,"yyyy-mm-dd",0);
+	myDateSelecter.intervalMinutes = 24*60;
+	//myDateSelecter.input.val("2017-01-13 20:00:00");
+	$(".dateSelect").append(myDateSelecter.div);
+	$(document).ready(function(){
+		history();
+		$("#searchRec").click(function(){
+			layer.alert('敬请期待！', {
+				icon: 1,
+				time: 2000
+			});
+		});
+	});
+	function getWarning(timeStr,dtype){
+		var para = {};
+		if(typeof(timeStr) != "undefined" && timeStr != "" && timeStr != "undefined"){
+			var selectDate = new Date(timeStr);
+			var date = new Date();
+			if(selectDate > date){
+				layer.alert('请选择有效时间！', {
+					icon: 2
+					, time: 3000 //2秒关闭（如果不配置，默认是3秒）
+				});
+				return;
+			}
+			para.timeStr = timeStr;
+		}
+		if(typeof(dtype) != "undefined" && dtype != ""){
+			para.dtype = dtype;
+		}
+		para.areaCode = ($.cookie("departCode") == null || typeof($.cookie("departCode")) == "undefined")?"37":$.cookie("departCode");
+		para = JSON.stringify(para); //对象转换为json
+		var url = gridServiceUrl+"services/ForecastfineService/getWaringByADCode";
+		var	params = {"para": para};
+		var asyncFlag = true;
+		var error ="暂无数据";
+		dmt.getDataRecall(function(wdata){
+			var warnings = restore(wdata);
+			displayHistoryTab("realTab",warnings);
+		},url,params,asyncFlag,error);
+	}
+	function getHolds(hid){
+		var para = {};
+		if(typeof(hid) != "undefined" && hid != "" && hid != "undefined"){
+			para.hid = hid;
+		}
+		para = JSON.stringify(para); //对象转换为json
+		var url = gridServiceUrl+"services/ForecastfineService/getWarningHolds";
+		var	params = {"para": para};
+		var asyncFlag = true;
+		var error ="暂无数据";
+		dmt.getDataRecall(function(hdata){
+			displayHoldsTab("realTab",hdata);
+		},url,params,asyncFlag,error);
+	}
+	function displayHistoryTab(tid,tdata){
+		var titleStr = getTitle("warnings");
+		$("#realTitle").html(titleStr);
+		var tabStr = "<tr>";
+		if(tdata.length > 0){
+			for(var i=0;i<tdata.length;i++) {
+				var dp = (tdata[i].decisioner == "undefined" || typeof(tdata[i].decisioner) == "undefined" || tdata[i].decisioner == "")?"<span style='color:red'>❌ 未处理</span>":tdata[i].decisioner;
+				tabStr += '<td><input type="checkbox" /></td><td>' + tdata[i].Station_Name + '</td>'
+					+ '<td>' + tdata[i].City + '</td><td>'+tdata[i].type + '('+tdata[i].wName.substring(0,2)+')'+ '</td><td>' + tdata[i].addtime + '</td><td>' + tdata[i].isDeal + '</td><td>' + dp + '</td>';
+				tabStr += '<td><div class="am-btn-toolbar">'
+					+ '<div class="am-btn-group am-btn-group-xs">'
+					+ (tdata[i].isDeal != "未处理"?'<span style="font-size:1.3rem;color:green;margin-left: 25px;">✔已处理</span>': '<button onclick="produce()" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 预警制作</button>'
+					+ '<button flag="'+tdata[i].id+'" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 标记已处理 </button>')
+					+ '</div></div></td>';
+				tabStr += '</tr>'
+			}
+		}else{
+			tabStr = "<tr><td colspan='8'> <span style='color:red;font-weight: bold;font-size: 15px'>此时次暂无报警数据！</span></td></tr>"
+		}
+		$("#"+tid).html(tabStr);
+		$("#rowCount").html(tdata.length);
+		$("#"+tid).find("button").click(function(){
+			var wid = $(this).attr("flag");
+			warningDeal(wid);
+		});
+	}
+
+	function displayHoldsTab(tid,hdata){
+		var titleStr = getTitle("holds");
+		$("#realTitle").html(titleStr);
+		var tabStr = "<tr>";
+		if(hdata.length > 0){
+			for(var i=0;i<hdata.length;i++) {
+				tabStr += '<td><input type="checkbox" /></td>'
+					    + '<td>' + hdata[i].name + '</td>'
+					    + '<td>' + hdata[i].minvalue + ((hdata[i]["type"].indexOf("rain") > -1)?" mm":" m/s")+ '</td>'
+					    + '<td>'+hdata[i].timeRange + ' 小时</td>'
+					    + '<td>' + hdata[i].stationpercent + '%</td>';
+				tabStr += '<td><div class="am-btn-toolbar">'
+					    + '<div class="am-btn-group am-btn-group-xs">'
+					    + '<button flag="'+hdata[i].id+'" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 阈值修改 </button>'
+					    + '</div></div></td>';
+				tabStr += '</tr>'
+			}
+		}else{
+			tabStr = "<tr><td colspan='6'> <span style='color:red;font-weight: bold;font-size: 15px'> 暂无阈值！</span></td></tr>"
+		}
+		$("#"+tid).html(tabStr);
+		$("#rowCount").html(hdata.length);
+		$("#"+tid).find("button").click(function(){
+			var hid = $(this).attr("flag");
+			var para = {};
+			para.hid = hid;
+			para = JSON.stringify(para); //对象转换为json
+			var url = gridServiceUrl+"services/ForecastfineService/getWarningHolds";
+			var	params = {"para": para};
+			var asyncFlag = true;
+			var error ="暂无数据";
+			dmt.getDataRecall(function(hdata){
+				if(hdata.length < 1 || typeof(hdata) == "undefined"){
+					layer.alert('未知错误！请联系管理员！', {
+						icon: 2,
+						time: 3000
+					});
+					return;
+				}
+				var holdObj =  hdata[0];
+				var htmlStr = '<div id="holdForm" style="margin-top:10px;padding:5px;">';
+					//阈值
+					htmlStr += '<div class="layui-form-item">';
+					htmlStr += '<label class="layui-form-label" style="width:100px">阈&nbsp;&nbsp;&nbsp;&nbsp;值</label>';
+					htmlStr += '<div class="layui-input-inline">';
+					htmlStr += '<input type="hidden" id="hid" value="'+holdObj.id+'" />';
+					htmlStr += '<input type="text" id="minvalue" lay-verify="required" value="'+holdObj.minvalue+'" placeholder="请输入阈值" autocomplete="off" class="layui-input">';
+					htmlStr += '</div>';
+					htmlStr += '<div class="layui-form-mid layui-word-aux" style="font-weight: bolder">'+((holdObj.type.indexOf("rain") > -1) ?" mm":" m/s")+'</div>';
+					htmlStr += '</div>';
+					//作用时段
+					htmlStr += '<div class="layui-form-item">';
+					htmlStr += '<label class="layui-form-label" style="width:100px">作用时段</label>';
+					htmlStr += '<div class="layui-input-inline">';
+					htmlStr += '<input type="text" id="timeRange" lay-verify="required" value="'+holdObj.timeRange+'" placeholder="请输入作用时段" autocomplete="off" class="layui-input">';
+					htmlStr += '</div>';
+					htmlStr += '<div class="layui-form-mid layui-word-aux" style="font-weight: bolder">小时</div>';
+					htmlStr += '</div>';
+					//超警百分比
+					htmlStr += '<div class="layui-form-item">';
+					htmlStr += '<label class="layui-form-label" style="width:100px">超警百分比</label>';
+					htmlStr += '<div class="layui-input-inline">';
+					htmlStr += '<input type="text" id="stationpercent" lay-verify="required" value="'+holdObj.stationpercent+'" placeholder="超警百分比" autocomplete="off" class="layui-input">';
+					htmlStr += '</div>';
+					htmlStr += '<div class="layui-form-mid layui-word-aux" style="font-weight: bolder"> %</div>';
+					htmlStr += '</div>';
+				if(holdObj.name.indexOf("县级") > -1){
+					htmlStr += '<div style="text-align:left;">';
+					htmlStr += '<label style="width:100%;color:green;font-zize:15px;font-weight: 400;padding:2px 15px;">注:如有超警即报警规则,百分比请填 1  </label>';
+					htmlStr += '</div>';
+				}
+				htmlStr += "</div>";
+				layer.open({
+					title: "<font style='color:#009688'>[ "+ holdObj.name + " ]</font> &nbsp;<small style='color:#1E9FFF'>阈值修改</small>",
+					type: 1,
+					skin: 'layui-layer-mol', //加上边框
+					//area: ['420px', '266px'], //宽高
+					content: htmlStr
+					,btn: ['确定', '取消']
+					,yes: function(){
+						layer.confirm('确定修改？', {
+							btn: ['确定','返回'] //按钮
+						}, function(){
+								debugger;
+								var para = {};
+								para.hid = $("#holdForm #hid").val();
+								para.minvalue = $("#holdForm #minvalue").val();
+								para.timeRange = $("#holdForm #timeRange").val();
+								para.stationpercent = $("#holdForm #stationpercent").val();
+								para = JSON.stringify(para); //对象转换为json
+								var url = gridServiceUrl+"services/ForecastfineService/updateHolds";
+								var	params = {"para": para};
+								var asyncFlag = true;
+								var error ="暂无数据";
+								dmt.getDataRecall(function(result){
+									if(result){
+										layer.msg('修改成功！', {icon: 1,time:1314});
+										getHolds();
+										setTimeout(function(){
+											layer.closeAll();
+										},1500);
+									}else{
+										layer.msg('修改失败！', {icon: 2,time:1314});
+									}
+								},url,params,asyncFlag,error);
+						}, function(){
+
+						});
+					}
+					,btn2: function(){
+						layer.closeAll();
+					}
+				});
+			},url,params,asyncFlag,error);
+
+			//holdUpdate(hid);
+		});
+	}
+	function  restore(wdata){
+		function clone(obj){
+			var result ={};
+			for(var key in obj){
+				result[key]=obj[key];
+			}
+			return result;
+		}
+		function createObj(flagType,curObj){
+			var eleType,colorType,eleName,sufix,colorStr = "";
+			eleType = flagType.split("_")[0];
+			colorType = flagType.split("_")[1];
+			switch(eleType){
+				case "rain":{
+					eleName = "短时强降水";
+					sufix = "(mm)";
+				}
+					break;
+				case "win":{
+					eleName = "大风";
+					sufix = "(m/s)";
+				}
+					break;
+			}
+			switch(colorType){
+				case "blue":{
+					colorStr = "蓝色";
+				}
+					break;
+				case "yellow":{
+					colorStr = "黄色";
+				}
+					break;
+				case "orange":{
+					colorStr = "橙色";
+				}
+					break;
+				case "red":{
+					colorStr = "红色";;
+				}
+					break;
+			}
+			var tempObj = clone(curObj);
+			tempObj.img = flagType;
+			tempObj.color = colorType;
+			tempObj.colorStr = colorStr;
+			tempObj.type = eleName+" <font style='color:"+tempObj.color+"'>" + tempObj.colorStr + "</font> 警报";
+			tempObj.value = curObj.wValue+sufix;
+			return tempObj;
+		}
+		var newWarings = [];
+		for(var index in wdata){
+			var dataType = wdata[index].wType;
+			var flagType = dataType;
+			if(dataType.split("_")-1 > 1){
+				flagType = dataType.substring(0,dataType.lastIndexOf("_"));
+			}
+			newWarings.push(createObj(flagType,wdata[index]));
+		}
+		return newWarings;
+	}
+	function warningDeal(wid){
+		var para = {};
+		para.id = wid;
+		para.dealTime = dmt.getMyCurTime(false,0,"");
+		para.decisioner = (typeof($.cookie("departName")) == "undefined" || $.cookie("departName") == null)?"":$.cookie("departName");
+		para = JSON.stringify(para); //对象转换为json
+		var url = gridServiceUrl+"services/ForecastfineService/WarningDeal";
+		var	params = {"para": para};
+		var asyncFlag = true;
+		var error ="暂无数据";
+		dmt.getDataRecall(function(result){
+			if(result){
+				var curTime = $($("#datetime").find("input")[0]).val();
+				getWarning(curTime);
+			}
+		},url,params,asyncFlag,error);
+	}
+	function getTitle(tabType){
+		var titleStr = "";
+		//不多，暂时不设计算法加载，直接调用，有时间再搞
+		switch(tabType){
+			case "warnings":{
+				titleStr = ''
+					+ '<tr>'
+					+ '<th class="table-check"><input type="checkbox" /></th><!--<th class="table-id">ID</th>--><th class="table-title">报警点名称</th><th class="table-title">所在市</th><th class="table-type">报警类型</th><th class="table-date am-hide-sm-only">报警时间</th><th class="table-author am-hide-sm-only">处理状态</th><th class="table-author am-hide-sm-only">处理人</th><th class="table-set">操作</th>'
+					+ '</tr>'
+			}
+				break;
+			case "holds":{
+				titleStr = ''
+					+ '<tr>'
+					+ '<th class="table-check"><input type="checkbox" /></th><th class="table-title"> 报&nbsp;警&nbsp;类&nbsp;型 </th><th class="table-title"> 阈&nbsp;&nbsp;&nbsp;&nbsp;值 </th><th class="table-type">作用时间</th><th class="table-date am-hide-sm-only">超警百分比</th><th class="table-set"> 操&nbsp;&nbsp;&nbsp;&nbsp;作 </th>'
+					+ '</tr>'
+			}
+				break;
+		}
+		return titleStr;
+	}
+	function displayChart(){
+		var url = gridServiceUrl+"services/ForecastfineService/getWarningDailyStatis";
+		var	params = {"para": null};
+		var asyncFlag = true;
+		var error ="暂无数据";
+		dmt.getDataRecall(function(wdata){
+			var shuju = echarts.init(document.getElementById("shuju"));
+			var dataX = [];
+			var dataY = [];
+			var newData = {};
+			for (var i in wdata) {
+				newData[wdata[i].dataTime] = wdata[i].dayCount;
+			}
+			var today = new Date();
+			var todayStr = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+			var dataTimes = getDaysRange(wdata[0].dataTime,todayStr);
+			for (var xh in dataTimes) {
+				var tempName = dataTimes[xh];
+				if(typeof(newData[tempName]) == "undefined"){
+					dataY.push("0");
+				}else{
+					dataY.push(newData[tempName]);
+				}
+				//var ycell = tempName.substring(0,4)+'/'+tempName.substring(5,7)+'/'+tempName.substring(8,10);
+				var ycell = tempName.substring(0,4)+'/'+tempName.substring(5,7)+'/'+tempName.substring(8,10);
+				dataX.push(ycell);
+			}
+
+			option = {
+				tooltip: {
+					trigger: 'axis',
+					position: function (pt) {
+					 	return [pt[0], '10%'];
+					 }
+				},
+				title: {
+					left: 'center',
+					text: '历史报警统计图(近一个月)',
+				},
+				/*legend: {
+					top: 'top',
+					data:['意向']
+				},*/
+				toolbox: {
+					feature: {
+						mark:{show: true},
+						magicType : {show: true, type: ['bar', 'line']},
+						dataZoom: {
+							yAxisIndex: 'none'
+						},
+						restore: {},
+						saveAsImage: {},
+						dataView : {show: true, readOnly: false}
+					}
+				},
+				xAxis: {
+					type: 'category',//category
+					boundaryGap: false,
+					data: dataX,
+					axisLabel :{
+						//rotate: 300,
+						interval:0,
+						formatter : function (params) {
+							var date = params.split("/");
+							return date[1]+"/" + date[2] + '\n' + date[0]
+						}
+					}
+				},
+				yAxis: {
+					type: 'value',//category
+					boundaryGap: [0, '100%']
+				},
+				dataZoom: [{
+					type: 'inside',
+					realtime : true,
+					start: 0,
+					end: 100,
+				}, {
+					start: 0,
+					end: 10,
+					//handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+					handleSize: '100%',
+					handleStyle: {
+						color: '#fff',
+						shadowBlur: 3,
+						shadowColor: 'rgba(0, 0, 0, 0.6)',
+						shadowOffsetX: 2,
+						shadowOffsetY: 2
+					}
+				}],
+				grid: {
+					y2: 100
+				},
+				series: [
+					{
+						name:'日报警总数',
+						type:'line',
+						smooth:true,
+						symbol: 'none',
+						sampling: 'average',
+						itemStyle: {
+							normal: {
+								color: 'rgb(255, 70, 131)'
+							}
+						},
+						areaStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+									offset: 0,
+									color: 'rgb(255, 158, 68)'
+								}, {
+									offset: 1,
+									color: 'rgb(255, 70, 131)'
+								}])
+							}
+						},
+						data: dataY
+					}
+				]
+			};
+			shuju.setOption(option);
+		},url,params,asyncFlag,error);
+	}
+	Date.prototype.Format = function(fmt){
+		var o = {
+			"M+" : this.getMonth()+1,                 //月份
+			"d+" : this.getDate(),                    //日
+			"h+" : this.getHours(),                   //小时
+			"m+" : this.getMinutes(),                 //分
+			"s+" : this.getSeconds(),                 //秒
+			"q+" : Math.floor((this.getMonth()+3)/3), //季度
+			"S"  : this.getMilliseconds()             //毫秒
+		};
+		if(/(y+)/.test(fmt))
+			fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+		for(var k in o)
+			if(new RegExp("("+ k +")").test(fmt))
+				fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+		return fmt;
+	}
+	//获取日期范围
+	function getDaysRange(sDate,eDate){
+		var days = [];
+		function getDate(datestr){
+			var temp = datestr.split("-");
+			var date = new Date(temp[0],temp[1],temp[2]);
+			return date;
+		}
+		var startTime = getDate(sDate);
+		var endTime = getDate(eDate);
+		while((endTime.getTime()-startTime.getTime())>=0){
+			var year = startTime.getFullYear();
+			var month = startTime.getMonth().toString().length==1?"0"+startTime.getMonth().toString():startTime.getMonth();
+			var day = startTime.getDate().toString().length==1?"0"+startTime.getDate():startTime.getDate();
+			days.push(year+"-"+month+"-"+day);
+			startTime.setDate(startTime.getDate()+1);
+		}
+		return days;
+	}
+	//处理url 参数
+	function request(paras) {
+		var url = location.href;
+		var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+		var paraObj = { };
+		var j = "";
+		for (var i = 0;j = paraString[i]; i++) {
+			paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+		}
+		var returnValue = paraObj[paras.toLowerCase()];
+		if (typeof (returnValue) == "undefined") {
+			return "";
+		} else {
+			return returnValue;
+		}
+	}
+	function produce(){
+		//location.href = "product.html"
+		window.open("product.html","_blank");
+	}
+	function history(){
+		$("#tabTitle").html("短临实况报警详情");
+		$("#Chart").show();
+		$("#tabTools").show();
+		$("#realTab").empty();
+		displayChart();
+		var dTime = decodeURI(request("dTime"));
+		if(typeof(dTime) != "undefined" && dTime != "" && dTime != "undefined"){
+			myDateSelecter.setCurrentTime(dTime);
+		}
+		getWarning(dTime);
+		$("#datetime").find("input").change(function(){
+			getWarning($(this).val());
+		});
+		$("#datetime").find("img").click(function(){
+			//$("#realTab").html("<tr><td colspan='8'> <span style='color:red;font-weight: bold;font-size: 15px'> 此时次暂无报警数据！</span></td></tr>");
+			getWarning($($("#datetime").find("input")[0]).val());
+		});
+	}
+	function holds(){
+		$("#Chart").hide();
+		$("#tabTools").hide();
+		$("#tabTitle").html("短临实况阈值管理");
+		$("#realTab").empty();
+		getHolds();
+	}
+</script>
+</body>
+</html>
