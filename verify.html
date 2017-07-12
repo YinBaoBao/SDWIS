@@ -8,7 +8,7 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>山东气象业务一体化平台--山洪预警</title>
+	<title>山东气象业务一体化平台--预报制作与发布</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="assets/viewer/viewer.css">
 	<link rel="stylesheet" href="css/common.css"/>
@@ -145,6 +145,7 @@
 	<script type="text/javascript" src="js/Pages/ZCDPageClass.js" ></script>
 	<script type="text/javascript" src="js/Pages/QDLJCPageClass.js" ></script>
 	<script type="text/javascript" src="js/Pages/CPZSPageClass.js" ></script>
+	<script type="text/javascript" src="js/Pages/GDJYPageClass.js" ></script>
 	<script type="text/javascript" src="js/zdyb.js"></script>
 	<script type="text/javascript" src="js/Pages/gdyb/GridManage.js"></script>
 	<script type="text/javascript" src="js/GridProductClass.js"></script>
@@ -206,6 +207,11 @@
 	<script type="text/javascript" src="js/util/LayerUtil.js"></script>
 	<script type="text/javascript" src="js/util/DateUtils.js"></script>
 	<script type="text/javascript" src="js/Controls/SmallRadar.js"></script>
+	<!--iCheck 多选框插件
+	<link rel="stylesheet" href="css/flat/blue.css"/>
+	<link rel="stylesheet" href="css/square/blue.css"/>
+	<script type="text/javascript" src="js/icheck.js"></script>-->
+	<!-- highcharts-->
 	<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
 	<script type="text/javascript" src="js/highcharts/highcharts-zh_CN.js"></script>
 	<script type="text/javascript" src="js/highcharts/exporting.js"></script>
@@ -216,7 +222,7 @@
 		<div class="background">
 		</div>
 		<div class="logo">
-			<span class='mainMenu'>山洪预警</span>
+			<span class='mainMenu'>格点检验</span>
 		</div>
 		<!--右键菜单-->
 		<div id="divContextMenu" style="display:none;width:80px;position:absolute;top:0px;left:0px;border: solid 1px rgb(150,160,200);background-color: #FFFFFF;color: #000000;z-index: 99;cursor: pointer;font-size: 12px;">
@@ -230,156 +236,28 @@
 		</div>
 		<a id="ScreenFull"><img src="imgs/img_launchfullscreen.png"/></a>
 		<!--导航按钮-->
-		<div id="navMenu" style='left:300px'>
-			<ul id="btnMountainFloodWarning" class="root">
-				<li style='width:90px;'><a id="returnBack" onclick='window.open("nativ.html","_self");' style="cursor:pointer;">首页</a></li>
-				<li style='width:90px;'><a id="riskSurvey" style="cursor:pointer;">风险普查</a></li>
-				<li style='width:125px;'><a id="riskZoningMap" style="cursor:pointer;">风险区划图谱</a></li>
-				<li style='width:125px;'><a id="monitoringAlarm" style="cursor:pointer;">监测报警</a></li>
-				<li style='width:125px;'><a id="riskProduct" style="cursor:pointer;">产品制作与发布</a></li>
-				<!--<li style='width:125px;'><a id="riskWarning" style="cursor:pointer;">山洪预警联防</a></li>
-				<li style='width:125px;' class="existsub"><a id="productInspection" style="cursor:pointer;">产品检验评估</a></li>-->
+		<div id="navMenu">
+			<ul class="root">
+				<!--<li><a onclick='window.open("nativ.html","_self");'>首页</a></li>
+				<li><a href="javascript:SKZL(0);">气温</a></li>
+				<li><a href="javascript:SKZL(1);">降水</a></li>
+				<li><a href="javascript:SKZL(2);">大风</a></li>
+				<li><a href="javascript:SKZL(3);">气压</a></li>
+				<li><a href="javascript:SKZL(4);">能见度</a></li>
+				<li><a href="javascript:SKZL(5);">相对湿度</a></li>
+				<li><a href="javascript:SKZL(6);">闪电定位</a></li>
+				<li><a href="javascript:SKZL(7);">空气质量</a></li>
+				<li><a href="javascript:SKZL(8);">雷达</a></li>
+				<li class="existsub"><a href="javascript:SKZL(9);">云图</a></li>-->
 			</ul>
 		</div>
 	</div>
 	<div class="content">
-		<div id="menu" class="menu_normal"><!--minimize-->
+		<div id="menu" class="menu_normal" style="display:none;"><!--minimize-->
 			<a id="displayBtn" style="display:none; background: rgb(225, 225, 235)"><</a>
 			<div id="menu_bd" class="menu_bd"></div>
 		</div>
 		<div id="workspace_div">
-			<div id="map_div" class="map_normal">
-				<div id="AQI_chart">
-					<ul>
-						<li class="list1"><span>300</span><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span></li>
-						<li class="list2"><span>Ⅵ级</span><span>Ⅴ级</span><span>Ⅳ级</span><span>Ⅲ级</span><span>Ⅱ级</span><span>Ⅰ级</span></li>
-						<li class="list3"></li>
-					</ul>
-				</div>
-				<!--浮动信息框-->
-				<div id="myInfoWindow" style="z-index: 99;display: none;position: absolute;">
-					<div id="myInfoTL" class="myInfoImg" style="width: 100%;height :28px;display: none;"><img src="imgs/windows/finger_TL.png" style="margin-left: 50px"/></div>
-					<div id="myInfoTR" class="myInfoImg" style="width: 100%;height :28px;display: none;"><img src="imgs/windows/finger_TR.png" style="float:right;"/></div>
-					<div id="myInfoWin" style="background-color: #ffffff;box-shadow:5px 5px 8px #888888;border: 1px solid rgb(183,183,183);margin-top: -1px;"></div>
-					<div id="myInfoBL" class="myInfoImg" style="width: 100%;height :30px;margin-top: -1px;"><img src="imgs/windows/finger_BL.png" style="margin-left: 50px"/></div>
-					<div id="myInfoBR" class="myInfoImg" style="width: 100%;height :30px;margin-top: -1px;display: none;"><img src="imgs/windows/finger_BR.png" style="float:right;"/></div>
-				</div>
-				<div id="map_title_div" style="position: absolute;display: none;left:50%;top:0.25%;width: 280px;margin-left:-140px;text-align:center;color:red;background-color:rgba(255,255,255,0.6);border:1px solid rgb(52,115,183);font-size:16px;z-index: 5;"></div>
-				<div id="map_alert_div" style="position: absolute;display: none;left:50%;top:50%;width: 300px;margin-left:-140px;text-align:center;font-size:24px;color:rgb(255,0,0);z-index: 5;">无数据</div>
-				<div id="popup_div" style="position: absolute;width:100%;height:100%;top:10px;left:0px;z-index: 5;display: none;text-align: center;padding-top: 30px;">
-                        <span style="display: inline-block;border: 1px solid #4c4c4c;background: #fff;padding: 20px;">
-                        <div><span>格点值:</span>&nbsp;&nbsp;<input id="popup_text" type="text" style="height: 30px;width: 100px;"/>&nbsp;&nbsp;<input id="popup_submit" type="button" value="确定" onclick="popup_submit_fun()">&nbsp;&nbsp;<input id="popup_cancel" type="button" value="取消" onclick="popup_cancel_fun()"/></div>
-                        </span>
-				</div>
-				<div id="divInputValue" style="display: none; position: absolute;width: 35px; height: 24px;top:0px;left:0px;border: solid 1px rgb(150,160,200);background-color: #FFFFFF;color: #000000;z-index: 99;font-size: 12px">
-					<input id="divInputValue_input" type="text" style="height: 100%;width: 100%;border: none;text-align: center"/>
-				</div>
-				<!--<div id="div_legend" style="position: absolute;display: block;bottom: 1px;width: 100%; float:left;z-index: 5;text-align: center;">-->
-				<div id="div_legend" style="position: absolute;display: block;bottom: 1px;width: 100%; z-index: 5;text-align: center;">
-					<div style="display: inline-block;">
-						<!--<div id="div_legend_items" style="float:left;"></div>-->
-						<div id="div_legend_items" style=""></div>
-						<!--<div id="div_legend_itemTexts" style="height: 30px;"></div>-->
-					</div>
-				</div>
-				<div id="dmapTools" class="dmapTools" style="z-index:20;left:14px;">
-                    <div  flag="zoomIn" title="地图放大">
-                        <img src="imgs/tools/tbig.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">放大</span>-->
-                    </div>
-                    <div  flag="zoomOut" title="地图缩小">
-                        <img src="imgs/tools/tsmall.png" class="toolsImg"/>
-                       <!-- <span class="toolsTitile">缩小</span>-->
-                    </div>
-                    <div flag="pan" title="移动地图">
-                        <img src="imgs/tools/trace.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">平移</span>-->
-                    </div>
-                    <div flag="fullScreen" title="缩放本区域全图">
-                        <img src="imgs/tools/fscreen.png" class="toolsImg"/>
-                       <!-- <span class="toolsTitile">全省</span>-->
-                    </div>
-					<div flag="drawTxt" title="添加文字">
-                        <img src="imgs/tools/mark.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">文字</span>-->
-                    </div>
-                    <div flag="drawLine" title="测距离">
-                        <img src="imgs/tools/gdistance.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">测距</span>-->
-                    </div>
-                    <div flag="drawPolygon" title="测面积">
-                        <img src="imgs/tools/garea.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">测面</span>-->
-                    </div>
-                    <div flag="drawrectangle" title="绘制矩形">
-                        <img src="imgs/tools/rec.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">矩形</span>-->
-                    </div>
-                    <div flag="drawcircle" title="绘制圆形">
-                        <img src="imgs/tools/circle.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">画圆</span>-->
-                    </div>
-                    <div flag="drawluoqu" title="绘制落区">
-                        <img src="imgs/tools/down.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">落区</span>-->
-                    </div>
-                    <div flag="clear" title="清除" id="dxToolsClear">
-                        <img src="imgs/tools/clear.png" class="toolsImg"/>
-                        <!--<span class="toolsTitile">清除</span>-->
-                    </div>
-                </div>
-				<div id="div_mapBounds" flag="min" class="div_mapBounds">
-					<a id="setMapBoundsId">区域选择</a>
-					<div id="div_mapBoundsContent"></div>
-				</div>
-				<div id="div_layerManager" flag="min" style="position: absolute;display: block;left:2px;bottom:2px;width: 100px;height:30px;z-index:999;text-align: center;">
-					<div id="div_layerManager_Title" class="layerTitle">图层管理&nbsp;<img id="img_layerShow" src="imgs/layerUp.png"></img></div>
-					<div id="div_layeContent">
-					</div>
-				</div>
-				<div id="mapSwitch_div" class="mapLayer" style="z-index:20;">
-					<div style="float:right;">
-						<div>
-							<img id="curImg" class="mapNowImg" flag="vec" src="imgs/img_map_loc_day.png">
-						</div>
-					</div>
-					<div id="div_tdt_ter" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
-						<div>
-							<div>
-								<img class="mapImg" flag="ter" src="imgs/img_map_tdt_ter.png">
-							</div>
-						</div>
-					</div>
-					<div id="div_tdt_map" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
-						<div>
-							<div>
-								<img class="mapImg" flag="vec" src="imgs/img_map_tdt_map.png">
-							</div>
-						</div>
-					</div>
-					<div id="div_loc_day" onclick="tiandituOnclick(this)" class="moreMapLayer" style="float: right; margin-right: 5px; display: none;">
-						<div>
-							<div>
-								<img class="mapImg" flag="day" src="imgs/img_map_loc_day.png">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="ExportPics" class=""><button value="出图" title=" 快捷出图,右键隐藏 " > 出图 </button></div>
-				<div class="mapd" style="left: 0px;top:0px;display: none;"><div id="map1_title_div" style="position:absolute;z-index:10;left:30%;top:5px;text-align:center;background:#fff;border:1px solid #b6bfc6;pading:5px;font-size:20px"></div></div>
-				<div class="mapd" style="left: 50%;top:0px;display: none;"><div id="map2_title_div" style="position:absolute;z-index:10;left:30%;top:5px;text-align:center;background:#fff;border:1px solid #b6bfc6;pading:5px;font-size:20px"></div></div>
-				<div class="mapd" style="left: 0px;top:50%;display: none;"><div id="map3_title_div" style="position:absolute;z-index:10;left:30%;top:5px;text-align:center;background:#fff;border:1px solid #b6bfc6;pading:5px;font-size:20px"></div></div>
-				<div class="mapd" style="left: 50%;top:50%;display: none;"><div id="map4_title_div" style="position:absolute;z-index:10;left:30%;top:5px;text-align:center;background:#fff;border:1px solid #b6bfc6;pading:5px;font-size:20px"></div></div>
-				<div id="map"></div>
-				<div class="mapd" style="left: 0px;top:0px;display: none;"><div class="screen4Map" id="map1"></div></div>
-				<div class="mapd" style="left: 50%;top:0px;display: none;"><div class="screen4Map" id="map2"></div></div>
-				<div class="mapd" style="left: 0px;top:50%;display: none;"><div class="screen4Map" id="map3"></div></div>
-				<div class="mapd" style="left: 50%;top:50%;display: none;"><div class="screen4Map" id="map4"></div></div>
-				<div id="chart_div" style="position:absolute;z-index:10;bottom:10px;left:10px;background:#fff;border:1px solid #b6bfc6;pading:5px;"></div>
-				<div id="div_showGridValue" style="display:none; position: absolute; border: 1px solid #4c4c4c;background-color:rgba(255,255,255,0.5);padding:3px 3px 3px 3px;"></div>
-			</div>
-			<!--<div id="hourSpan_div" style="position: absolute;width: 100%;height: 30px;background: #ededed;left: 300px;bottom: 0px">-->
-			<!--</div>-->
 			<div id="div_modal_confirm" class="modal fade" style="width: 400px;margin: 0 auto;z-index: 9999;">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -458,76 +336,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!--自动站参考报-->
-			<div id="div_modal_zdz" class="modal hide fade in" style="display: none; ">
-				<div class="modal-header">
-					<a class="close" data-dismiss="modal">×</a>
-					<h3>提示</h3>
-				</div>
-				<div id="divImportModelType_zdz" class="modal-body">
-					<div style='float:left;height: 26px'>
-						<h4 id="div_modal_content_zdz" style="float:none;line-height: 26px;">是否调入自动站数据：</h4>
-					</div>
-
-					<div id="dateSelectContainer_zdz">
-						<div id='dateSelect_zdz' style='margin-left: 0px;'></div>
-					</div>
-					<div style="margin-top: 10px;"><span>影响半径：</span><input type='number' id='importRadius' name='value2' min='1' max='10' value='0' style='margin-bottom: 0px;width: 60px;height: 24px'/></div>
-					<div style="margin-top: 10px;"><input id="inputMaxTem" name="importtype" type="checkbox" value="1" checked="checked" /><span>24小时最高温度</span></div>
-					<div style="margin-top: 10px;"><input id="inputMinTem" name="importtype" type="checkbox" value="2" checked="checked" /><span>24小时最低温度</span></div>
-				</div>
-				<div class="modal-footer">
-					<a id="btn_canel_zdz" href="#" class="btn" data-dismiss="modal">取消</a>
-					<a id="btn_ok_zdz" href="#" data-dismiss="modal" class="btn btn-success">确定</a>
-				</div>
-			</div>
-			<style >
-				#div_progress {
-					display: none;
-					position: absolute;
-					right: 10px;
-					bottom: 14px;
-					z-index: 99;
-					width: auto;
-					height: 40px;
-					line-height: 40px;
-					vertical-align: middle;
-					text-align: right;
-					opacity:0.9;
-
-					/*top: 50%;
-					left: 50%;
-					margin: -120px 0px 0px -120px;
-					text-align: center;*/
-				}
-
-				#div_progress_title {
-					color: #ffff00;
-					font-size: 16px;
-					font-weight: bold;
-					text-shadow:rgb(0,0,0) 1px 0 0,rgb(0,0,0) 0 1px 0,rgb(0,0,0) -1px 0 0,rgb(0,0,0) 0 -1px 0;
-				}
-			</style>
-			<div id="div_progress" style="">
-				<span id="div_progress_title">正在生成格点报...</span>
-				<!--<link rel="stylesheet" href="css/load6.css">
-				<div class="load-container load6">
-					<div class="loader">Loading...::after</div>
-				</div>-->
-			</div>
 		</div>
-	</div>
-	<div id="mapTools">
-		<div id="MapToolsDiv" hflag="false" style="display: none;position: absolute;z-index: 9999">
-			<div id="mtsContentTL" class="mtsContentImg" style="width: 100%;height :28px;display: none;"><img src="imgs/tools/finger_TL.png" style="margin-left: 50px"/></div>
-			<div id="mtsContentTR" class="mtsContentImg" style="width: 100%;height :28px;display: none;"><img src="imgs/tools/finger_TR.png" style="float:right;"/></div>
-			<div id="mtsContent"  style="background-color: #ffffff;box-shadow:5px 5px 8px #888888;border: 1px solid rgb(183,183,183);margin-top: -1px;"></div>
-			<div id="mtsContentBL" class="mtsContentImg" style="width: 100%;height :30px;margin-top: -1px;"><img src="imgs/tools/finger_BL.png" style="margin-left: 50px"/></div>
-			<div id="mtsContentBR" class="mtsContentImg" style="width: 100%;height :30px;margin-top: -1px;display: none;"><img src="imgs/tools/finger_BR.png" style="float:right;"/></div>
-		</div>
-		<div id="dxWindows"></div>
-		<div id="totleInfo" class="totleInfo" style="z-index:9999;"></div>
 	</div>
 </div>
 <div id="div_modal_screenShot" class="modal fade in" style="z-index: 99999;top: 32px; left: 3%; width: 95%; background: white; height: 93%;">
@@ -537,182 +346,48 @@
 	</div>
 	<div id="screenShotModal"  class="modal-body" style="height:90%;" >
 		<div id="screenShotDiv" style="width:100%;background-color: #ffffff;height:100%">
-			<!--<div id='screenShotLegend' style='width: 50px;height: 100px;z-index:100;position: absolute;left: 40px;bottom: 60px;border-style:solid;border-width:1px;border-color:#000;'></div>-->
 			<div id="hideDiv" style="display: none;"></div>
 			<div id="titleDiv" style="text-align: center;min-height:35px;line-height: 35px;font-size: 20px"><p id="p_time"></p></div>
 			<div id="outPutMapDiv" style="width:100%;text-align: center;height:calc(100% - 45px)"></div>
 			<div id="screenShotLegend" style="position: relative;bottom: 30px;width: 95%; height: 30px;z-index: 5;text-align: center;"></div>
 		</div>
 	</div>
-	<!--<div class="modal-footer">-->
-	<!--&lt;!&ndash;<a id="btn_canel" href="#" class="btn" data-dismiss="modal">取消</a>&ndash;&gt;-->
-	<!--&lt;!&ndash;<a id="btn_ok" href="#" data-dismiss="modal" class="btn btn-success">确定</a>&ndash;&gt;-->
-	<!--</div>-->
 </div>
 <!--登录框-->
 <div id="loginPanel" class="loginPanel">
-    <div id="loginDiv" class="loginDiv">
-        <div class="loginHeader" onmousedown="drag(document.getElementById('loginDiv'),event)">
-            <span>山东省气象业务一体化平台</span>
-            <div class="windowInfoClose" style="line-height: 38px;" onclick="closeLogin()">X</div>
-        </div>
-        <div style="width: 100%;height: 44px;margin-top: 25px;">
-             <input id="userName" type="text" class="loginParamInput" placeholder="用户名:">
-            <div style="margin-left: 32px;"><span id="passwordShow" class="loginTip"></span></div>
-        </div>
-        <div style="width: 100%;height: 40px;margin-top: 20px;">
-                <input id="password" type="password"  class="loginParamInput" placeholder="密码:">
+	<div id="loginDiv" class="loginDiv">
+		<div class="loginHeader" onmousedown="drag(document.getElementById('loginDiv'),event)">
+			<span>山东省气象业务一体化平台</span>
+			<div class="windowInfoClose" style="line-height: 38px;" onclick="closeLogin()">X</div>
+		</div>
+		<div style="width: 100%;height: 44px;margin-top: 25px;">
+			<input id="userName" type="text" class="loginParamInput" placeholder="用户名:">
+			<div style="margin-left: 32px;"><span id="passwordShow" class="loginTip"></span></div>
+		</div>
+		<div style="width: 100%;height: 40px;margin-top: 20px;">
+			<input id="password" type="password"  class="loginParamInput" placeholder="密码:">
 			<!--onFocus="loginOnFocus(this)" onBlur="loginOnBlur(this)" onchange="loginChange()"-->
-        </div>
-        <div style="margin-top: 10px;padding-top: 6px;height: 20px;">
-            <input id="ck_rmbUser" type="checkbox" style="margin-left: 32px;vertical-align: middle;" checked="true"/>
-            <label style="vertical-align:middle; ">保存密码</label>
-        </div>
-        <div style="width: 100%;height: 40px;margin-top: 10px;">
-            <div id ="btnLogin" onclick="login()" class="loginButton">登录</div>
-        </div>
-    </div>
+		</div>
+		<div style="margin-top: 10px;padding-top: 6px;height: 20px;">
+			<input id="ck_rmbUser" type="checkbox" style="margin-left: 32px;vertical-align: middle;" checked="true"/>
+			<label style="vertical-align:middle; ">保存密码</label>
+		</div>
+		<div style="width: 100%;height: 40px;margin-top: 10px;">
+			<div id ="btnLogin" onclick="login()" class="loginButton">登录</div>
+		</div>
+	</div>
 </div>
- <!--在首页上打开另一个HTML页的窗口 -->
+<!--在首页上打开另一个HTML页的窗口 -->
 <div id="dialog_model"
 	 style="position: absolute;left: 0px;top: 64px;width:100%;height:calc(100% - 64px);padding:0px;overflow: hidden;z-index:15000;display:none">
-	 <iframe id="dialog_modelIframe" src="" style="width: 100%;height: 100%;border: 0px;">
+	<iframe id="dialog_modelIframe" src="" style="width: 100%;height: 100%;border: 0px;">
 	</iframe>
 </div>
 <audio id="alertAudio" loop="true"><source src="assets\Warning.wav" type="audio/wav"></audio>
 </body>
-<!-- Messenger -->
-<script type="text/javascript" src="js/messenger/messenger.js"></script>
-<script type="text/javascript">
-	/*eslint no-unused-vars:off, no-undef:off*/
-	//修改为动态获取地址
-	var host = "http://"+window.location.host;
+<script type="text/javascript">  
 	$(document).ready(function(){
-		$("#span_user").click(function(){
-			if($(this).html() != "未登录"){
-				window.location = "personCenter.html";
-			}
-		});
-		GDYB.DisasterManagePage.renderMenu();//初始化山洪预警
-		window.GDYB&&GDYB.Page.main(GDYB.DisasterManagePage);
-		$("#riskSurvey")[0].click();
-		$("#ExportPics").bind('contextmenu',function(){
-			return false;
-		}).mousedown(function(event){
-			switch(event.which){
-				case 1 :{
-					//dmt.exportNewImage();
-					dmt.exportToImageNew();
-				}
-					break;
-				case 3 :{
-					var div = this;
-					var tip = $(div).find("button").clone().html("&nbsp;快捷出图关闭！").css({"z-index":"25"});
-					$(tip).appendTo($(div));
-					setTimeout(function(){
-						$(tip).remove();
-						$(div).hide();
-					}, 1500);
-				}
-					break;
-			}
-		});
+		window.GDYB&&GDYB.Page.main(GDYB.GDJYPage);
 	});
-
-	//键盘按键事件
-	$(document).keydown(function (event) {
-		if(event.keyCode == 189 || event.keyCode == 83) //-、s
-		{
-			GDYB.GridProductClass.updateGrid(GDYB.GridProductClass.subValue, 1);
-			GDYB.FilterTool.updateGrid(GDYB.GridProductClass.subValue, 1);
-		}
-		else if(event.keyCode == 187 || event.keyCode == 65) //+、a
-		{
-			GDYB.GridProductClass.updateGrid(GDYB.GridProductClass.addValue, 1);
-			GDYB.FilterTool.updateGrid(GDYB.GridProductClass.addValue, 1);
-		}
-	});
-
-	//弹出输入框
-	function popup_submit_fun(){
-		var t = this;
-		var value = $("#popup_text").val();
-		if(value&&value!=""){
-			$("#popup_div").css("display","none");
-			GDYB.GridProductClass.currentGridValuePicked = Math.floor(value*10)/10;
-		}
-		else{
-			alert("请输入格点值");
-		}
-	}
-
-	function popup_cancel_fun(){
-		$("#popup_div").css("display","none");
-		GDYB.GridProductClass.currentGridValuePicked = null;
-	}
-
-	//右键菜单事件处理
-	var hourspanCopy = null;
-	var hourspanHover = null;
-	$("#divContextMenu").find("div").click(function(){
-		if(this.id == "div_copy"){
-			hourspanCopy = hourspanHover;
-			$("#div_paste").css("display", "block");
-			$("#divContextMenu").css("display", "none");
-		}
-		else if(this.id == "div_paste"){
-			$("#divContextMenu").css("display", "none");
-			//var template = "是否将{0}小时格点粘贴到{1}小时格点？";
-			//if(confirm(template.format(hourspanCopy, hourspanHover)) == true)
-			{
-				GDYB.GridProductClass.dataCache.getData(GDYB.GridProductClass.currentMakeTime, GDYB.GridProductClass.currentVersion,
-					GDYB.GridProductClass.currentDateTime, GDYB.GridProductClass.currentElement, hourspanCopy, function(hourspanData){
-						//这里必须拷贝
-						var dataStack = new DataStack();
-						var datasetGrid = dataStack.clone(hourspanData.data);
-
-						GDYB.GridProductClass.dataCache.addData(GDYB.GridProductClass.currentMakeTime, GDYB.GridProductClass.currentVersion,
-							GDYB.GridProductClass.currentDateTime, GDYB.GridProductClass.currentElement, hourspanHover, datasetGrid, 1);
-						GDYB.GDYBPage.updateHourSpanStatus();
-					});
-			}
-		}
-		else if(this.id == "div_cancel"){
-			$("#divContextMenu").css("display", "none");
-		}
-	});
-
-	$("#a_exit").click(function(){
-		if(this.innerHTML == "退出") {
-			GDYB.GridProductClass.currentUserName = null;
-
-			$("#span_user")[0].innerHTML = "未登录";
-			$.cookie('password', '', { expires: -1 });      //如果退出，不记录密码
-			$.cookie("rmbUser", 'false', { expire: -1 });   //如果退出，不记录密码
-			$.cookie("departCode", '', { expire: -1 });   //如果退出，不记录密码
-			this.innerHTML = "登录";
-		}
-		else if(this.innerHTML == "登录") {
-			window.location.href="index.html";
-		}
-	});
-	//显隐displayBtn
-	$("#menu_bd").hover(function(){
-		$("#displayBtn").css("display", "block");
-	});
-	$("#menu_bd").mouseleave(function(){
-		//setTimeout("$('#displayBtn').css('display', 'none')",5000);
-	});
-	$("#sideWrapper").hover(function(){
-		$("#displayBtn").css("display", "block");
-	});
-	$("#sideWrapper").mouseleave(function(){
-		setTimeout("$('#displayBtn').css('display', 'none')",5000);
-	});
-	function closeIFrame(){
-		$("#dialog_model").css("display","none");
-	}
-	//设置模态窗的位置
-	$("#div_modal_confirm,#div_modal_SaveGrid").css("top",(document.body.clientHeight)*0.12);
 </script>
 </html>

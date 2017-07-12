@@ -27,7 +27,7 @@
             success: function(data) {
                 recallFun(data);
             },
-            error : function(err) { 
+            error : function(err) {
 				alert(err.responseText);
             }
         });
@@ -57,7 +57,7 @@
             success: function(data) {
                 recallFun(data);
             },
-            error : function(err) { 
+            error : function(err) {
 				alert(err.responseText);
             }
         });
@@ -77,4 +77,4 @@
             }
         });
     }
-}  
+}
